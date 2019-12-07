@@ -1,6 +1,6 @@
 <?php
 
-include_once("model/authbookModel.php");
+require "modal/authbookModel.php";
 
 class authbookController
 {
@@ -35,7 +35,7 @@ class authbookController
     public function registerProcess()
     {
         $param = $_POST;
-        if ($param['password'] == $param['password2']) {
+        if ($param['password'] === $param['password2']) {
             $result = $this->model->register($param);
 
             if ($result) {

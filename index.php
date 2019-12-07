@@ -1,14 +1,14 @@
 <?php
 
 // include_once("conn/database.php");
-// include_once("controller/authbookController.php");
+require("controller/authbookController.php");
 
 $request = $_SERVER['REQUEST_URI'];
 $uriSegments = explode("/", parse_url($request, PHP_URL_PATH));
 $numSegments = count($uriSegments);
 $segment = $uriSegments[$numSegments - 1];
 
-// $auth = new authbookController();
+$auth = new authbookController();
 
 switch ($segment) {
 
@@ -27,11 +27,12 @@ switch ($segment) {
     case 'registpemilik' :
         include_once('views/registerpemilik.php');
         break;
-
     case 'registerProcess' :
         $auth->registerProcess();
         break;
-
+    case 'loginProcess':
+        $auth->login();
+        break;
     default :
     echo '404 Not Found';
     break;

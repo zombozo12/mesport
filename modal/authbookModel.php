@@ -11,22 +11,31 @@ class authbookModel
 
     function login($params)
     {
-        $query = "SELECT * FROM user_table WHERE email = '" . $params['email'] . "' AND password = '" . hash('md5', $params['password']) . "'";
-        $ret = mysqli_query($this->connect, $query);
-        $data = mysqli_fetch_assoc($ret);
+        $email    = mysqli_real_escape_string($this->connect, $params['email']);
+        $password = mysqli_real_escape_string($this->connect, $params['password']);
+        $password = md5($password);
 
-        if (!empty($data)) {
-            $this->session($data['id']);
-            return true;
-        } else {
+        $login = $this->connect->prepare("SELECT id FROM tbl_user WHERE email = ? AND password = ?");
+        $login->bind_param('ss', $email, $password);
+        $login->execute();
+        $login->store_result();
+        $login->bind_result($id);
+
+        if($login->num_rows == 0){
             $_SESSION['message'] = 'Write your username or password correctly!';
-
             return false;
         }
+
+        while($login->fetch()){
+            $this->session($id);
+        }
+
+        return true;
     }
 
     function register($params)
     {
+
         $query = "INSERT INTO user_table (username, no_tlp, email, password) VALUES ('" . $params['Name'] . "', '" . $params['No_tlp'] . "', '" . $params['email'] . "', '" . hash('md5', $params['password']) . "')";
         $ret = mysqli_query($this->connect, $query);
 
