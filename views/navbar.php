@@ -16,11 +16,12 @@ if (!isset($_SESSION)) session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <link rel="stylesheet" href="Assets/css/modal.css">
-    <link rel="stylesheet" href="Assets/css/app.css">
+    <link rel="stylesheet" type="text/css" href="Assets/css/modal.css">
+    <link rel="stylesheet" type="text/css" href="Assets/css/app.css">
+    <script src="Assets/js/modal.js"></script> 
     <title>MeSport</title>
 </head>
-<script src="Assets/js/modal.js"></script> 
+
 
 
 
@@ -56,7 +57,7 @@ if (!isset($_SESSION)) session_start();
                 </ul>
 <!-- LOGIN USER -->
                 <div id="login">
-                    <form class="form" action="" method="post">
+                    <form class="form" action="google,com" method="post">
                         <div class="row">
                             <div class="col-sm">
                                 <center>
@@ -66,6 +67,7 @@ if (!isset($_SESSION)) session_start();
                                 </center>
                             </div>
                             <div class="col-sm">
+                               
                                 <p class="fieldset">
                                     <label class="image-replace email" for="signin-email">E-mail</label>
                                     <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
@@ -85,6 +87,7 @@ if (!isset($_SESSION)) session_start();
                                 <p class="fieldset">
                                     <input class="full-width" type="submit" value="Login Sebagai Pengguna Lapangan">
                                 </p>
+                            
                     </form>
 
 
@@ -95,7 +98,7 @@ if (!isset($_SESSION)) session_start();
         </div>
 <!-- LOGIN LAPANGAN -->
         <div id="signup">
-            <form class="form" action="" method="post">
+            <form class="form" action="ayeaye" method="post">
                 <div class="row">
                     <div class="col-sm">
                         <p class="fieldset">
@@ -147,7 +150,33 @@ if (!isset($_SESSION)) session_start();
 <!-- udah login -->
 
 <?php } else { ?>
- 
+    <nav class=" navbar navbar-expand-md navbar-light bg-white fixed-nav-bar ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="home">
+            <img src="Assets/logo MeSport!.png" alt="Logo" style="width: 100px;">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+              
+
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Username
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">Histori</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+            </ul>
 <?php } ?>
 <!-- udah login end -->
 </body>

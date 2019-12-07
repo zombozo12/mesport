@@ -21,11 +21,11 @@ switch ($segment) {
     break;
 
     case 'registbook' :
-        include_once('views/registerbook.php');
+        include_once('views/registbook.php');
         break;
 
     case 'registpemilik' :
-        include_once('views/registerpemilik.php');
+        include_once('views/registpemilik.php');
         break;
 
     case 'registerProcess' :
