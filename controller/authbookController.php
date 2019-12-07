@@ -14,11 +14,24 @@ class authbookController
         include_once('views/login.php');
     }
 
-    public function login()
+    public function loginUser()
     {
         $param = $_POST;
 
-        $result = $this->model->login($param);
+        $result = $this->model->loginUser($param);
+
+        if ($result) {
+            header('Location: home');
+        } else {
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="login"; </script>';
+        }
+    }
+
+    public function loginPemilik()
+    {
+        $param = $_POST;
+
+        $result = $this->model->loginPemilik($param);
 
         if ($result) {
             header('Location: home');
@@ -32,11 +45,26 @@ class authbookController
         include_once('views/registerbook.php');
     }
 
-    public function registerProcess()
-    {
+    public function registerUser(){
         $param = $_POST;
         if ($param['password'] === $param['password2']) {
-            $result = $this->model->register($param);
+            $result = $this->model->registerUser($param);
+
+            if ($result) {
+                header('Location: home');
+            } else {
+                echo '<script>alert("' . $_SESSION['message'] . '")</script>';
+
+            }
+        } else {
+            echo '<script>alert("Password not match!"); window.location="register"</script>';
+        }
+    }
+
+    public function registerPemilik(){
+        $param = $_POST;
+        if ($param['password'] === $param['password2']) {
+            $result = $this->model->registerPemilik($param);
 
             if ($result) {
                 header('Location: home');

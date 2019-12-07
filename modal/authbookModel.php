@@ -9,7 +9,7 @@ class authbookModel
         $this->connect = connect();
     }
 
-    function login($params)
+    function loginUser($params)
     {
         $email    = mysqli_real_escape_string($this->connect, $params['email']);
         $password = mysqli_real_escape_string($this->connect, $params['password']);
@@ -33,18 +33,65 @@ class authbookModel
         return true;
     }
 
-    function register($params)
-    {
+    function loginPemilik($params){
+        $email    = mysqli_real_escape_string($this->connect, $params['email']);
+        $password = mysqli_real_escape_string($this->connect, $params['password']);
+        $password = md5($password);
 
-        $query = "INSERT INTO user_table (username, no_tlp, email, password) VALUES ('" . $params['Name'] . "', '" . $params['No_tlp'] . "', '" . $params['email'] . "', '" . hash('md5', $params['password']) . "')";
-        $ret = mysqli_query($this->connect, $query);
+        $login = $this->connect->prepare("SELECT id FROM tbl_pemilik WHERE email = ? AND password = ?");
+        $login->bind_param('ss', $email, $password);
+        $login->execute();
+        $login->store_result();
+        $login->bind_result($id);
 
-        if ($ret > 0) {
-            return true;
-        } else {
-            $_SESSION['message'] = 'Register Failed';
+        if($login->num_rows == 0){
+            $_SESSION['message'] = 'Write your username or password correctly!';
             return false;
         }
+
+        while($login->fetch()){
+            $this->session($id);
+        }
+
+        return true;
+    }
+
+    function registerPemilik($params){
+        $nama           = mysqli_real_escape_string($this->connect, $params['nama']);
+        $nohp           = mysqli_real_escape_string($this->connect, $params['nohp']);
+        $email          = mysqli_real_escape_string($this->connect, $params['email']);
+        $password       = mysqli_real_escape_string($this->connect, $params['password']);
+        $password       = md5($password);
+        $jenis_kelamin  = mysqli_real_escape_string($this->connect, $params['jenis_kelamin']);
+
+        $rPemilik = $this->connect->prepare("INSERT INTO tbl_pemilik (nama, kontak, email, password, jenis_kelamin) VALUES(?,?,?,?,?)");
+        $rPemilik->bind_param('sisss', $nama, $nohp, $email, $password, $jenis_kelamin);
+        $rPemilik->execute();
+        $rPemilik->store_result();
+        if($rPemilik->affected_rows == 0){
+            $_SESSION['message'] = "Regristrasi Gagal";
+            return false;
+        }
+        return true;
+    }
+
+    function registerUser($params){
+        $nama           = mysqli_real_escape_string($this->connect, $params['nama']);
+        $nohp           = mysqli_real_escape_string($this->connect, $params['nohp']);
+        $email          = mysqli_real_escape_string($this->connect, $params['email']);
+        $password       = mysqli_real_escape_string($this->connect, $params['password']);
+        $password       = md5($password);
+        $jenis_kelamin  = mysqli_real_escape_string($this->connect, $params['jenis_kelamin']);
+
+        $rUser = $this->connect->prepare("INSERT INTO tbl_user (nama, kontak, email, password, jenis_kelamin) VALUES(?,?,?,?,?)");
+        $rUser->bind_param('sisss', $nama, $nohp, $email, $password, $jenis_kelamin);
+        $rUser->execute();
+        $rUser->store_result();
+        if($rUser->affected_rows == 0){
+            $_SESSION['message'] = "Regristrasi Gagal";
+            return false;
+        }
+        return true;
     }
 
     function session($data)

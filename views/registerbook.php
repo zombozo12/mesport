@@ -14,8 +14,7 @@
         .note {
             text-align: center;
             height: 80px;
-            background: #F4BA10;
-            ;
+            background: #F4BA10;;
             color: #fff;
             font-weight: bold;
             line-height: 80px;
@@ -45,54 +44,67 @@
 </head>
 
 <body>
-    <?php include_once('navbar.php') ?>
+<?php include_once('navbar.php') ?>
 
-    <div class="container register-form" style="margin-top: 5%;">
-        <div class="form">
-            <div class="note">
-                <p>Mendaftar Sebagai Pembooking Lapangan</p>
-            </div>
-<form action="registerProcess" method="post">
+<div class="container register-form" style="margin-top: 5%;">
+    <div class="form">
+        <div class="note">
+            <p>Mendaftar Sebagai Pembooking Lapangan</p>
+        </div>
+        <form action="registerUser" method="post">
             <div class="form-content">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="Name" placeholder="Nama Anda" value="" />
+                            <input type="text" class="form-control" name="nama" placeholder="Nama Anda" value=""/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="No_tlp" placeholder="No Telephone" value="" />
+                            <input type="text" class="form-control" name="nohp" placeholder="No Telephone" value=""/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="email" placeholder="Email" value="" />
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="password" placeholder="Password" value="" />
+                            <input type="text" class="form-control" name="email" placeholder="Email" value=""/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="password2" placeholder="Confirm Password" value="" />
+                            <input type="password" class="form-control" name="password" placeholder="Password" value=""/>
                         </div>
-
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password2" placeholder="Confirm Password"
+                                   value=""/>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="radioLaki" value="L">
+                                <label class="form-check-label" for="radioLaki">
+                                    Laki-laki
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="radioPerempuan" value="P">
+                                <label class="form-check-label" for="radioPerempuan">
+                                    Perempuan
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <img class="img-fluid" src="Assets/player.svg" alt="" style=" margin-left: 30%; width: 60%;">
-                   
-        </div>
+
+                    </div>
                 </div>
 
-               
+
                 <center>
-                <button type="submit" class="btnSubmit" style="margin-top: 10px;">DAFTAR</button>
-               
+                    <button type="submit" class="btnSubmit" style="margin-top: 10px;">DAFTAR</button>
+
                 </center>
             </div>
-        </div>
-        
-        </form>
-        </div>
-        <div class="footer" style="margin-top: 5%">
-        <?php include_once('footer.php') ?>
-        </div>
+    </div>
+
+    </form>
+</div>
+<div class="footer" style="margin-top: 5%">
+    <?php include_once('footer.php') ?>
+</div>
 </body>
 
 </html>
