@@ -20,6 +20,7 @@ if (!isset($_SESSION)) session_start();
     <script src="Assets/js/modal.js"></script>
     <title>MeSport</title>
 </head>
+<script src="Assets/js/modal.js"></script>
 
 
 <body>
@@ -36,19 +37,70 @@ if (!isset($_SESSION)) session_start();
                 <ul class="navbar-nav mr-auto">
 
                 </ul>
-                <!-- LOGIN USER -->
-                <div id="login">
-                    <form class="form" action="google,com" method="post">
-                        <div class="row">
-                            <div class="col-sm">
-                                <center>
-                                    <img class="img-fluid" src="Assets/player.svg" alt=""
-                                         style="width: 50%; transform: scaleX(-1);">
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <div class="login">
+                            <a class="nav-link" data-toggle="modal" data-target="#0" href="">Login</a>
+                        </div>
+                    </li>
+                </ul>
 
-                                    <h3 style="margin-top: 8%;"> Cari dan booking lapangan sesuai dengan olahraga
-                                        anda </h3>
-                                </center>
-                            </div>
+                <div class="user-modal">
+                    <div class="user-modal-container" id="mymodal">
+                        <ul class="switcher">
+                            <li><a href="#0">Sebagai Pengguna Lapangan</a></li>
+                            <li><a href="#0">Sebagai Pemilik Lapangan</a></li>
+                        </ul>
+                        <!-- LOGIN USER -->
+                        <div id="login">
+                            <form class="form" action="loginProcess" method="post">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <center>
+                                            <img class="img-fluid" src="Assets/player.svg" alt=""
+                                                 style="width: 50%; transform: scaleX(-1);">
+
+                                            <h3 style="margin-top: 8%;"> Cari dan booking lapangan sesuai dengan
+                                                olahraga anda </h3>
+                                        </center>
+                                    </div>
+                                    <div class="col-sm">
+                                        <p class="fieldset">
+                                            <label class="image-replace email" for="signin-email">E-mail</label>
+                                            <input class="full-width has-padding has-border" id="signin-email"
+                                                   type="email" placeholder="E-mail">
+                                            <span class="error-message">An account with this email address does not exist!</span>
+                                        </p>
+
+                                        <p class="fieldset">
+                                            <label class="image-replace password"
+                                                   for="signin-password">Password</label>
+                                            <input class="full-width has-padding has-border" id="signin-password"
+                                                   type="password" placeholder="Password">
+                                            <a href="#0" class="hide-password">Show</a>
+                                            <span class="error-message">Wrong password! Try again.</span>
+                                        </p>
+
+
+                                        Belum Memiliki akun?
+                                        <a class="text-link" href="registbook">DAFTAR</a>
+                                        <p class="fieldset">
+                                            <input class="full-width" type="submit"
+                                                   value="Login Sebagai Pengguna Lapangan">
+                                        </p>
+                            </form>
+
+
+                            <!-- <a href="#0" class="close-form">Close</a> -->
+                        </div>
+                    </div>
+
+                </div>
+                <!-- LOGIN LAPANGAN -->
+                <div id="signup">
+                    <form class="form" action="" method="post">
+                        <div class="row">
                             <div class="col-sm">
                                 <p class="fieldset">
                                     <label class="image-replace email" for="signin-email">E-mail</label>
@@ -114,6 +166,7 @@ if (!isset($_SESSION)) session_start();
                             <input class="full-width" type="submit" value="Login Sebagai Pemilik Lapangan">
                         </p>
             </form>
+
             <!-- <a href="#0" class="cd-close-form">Close</a> -->
         </div>
 
