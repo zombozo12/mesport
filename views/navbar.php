@@ -53,7 +53,7 @@ if (!isset($_SESSION)) session_start();
                         </ul>
                         <!-- LOGIN USER -->
                         <div id="login">
-                            <form class="form" action="loginProcess" method="post">
+                            <form class="form" action="loginUser" method="post">
                                 <div class="row">
                                     <div class="col-sm">
                                         <center>
@@ -98,20 +98,29 @@ if (!isset($_SESSION)) session_start();
                 </div>
                 <!-- LOGIN LAPANGAN -->
                 <div id="signup">
-                    <form class="form" action="" method="post">
+                    <form class="form" action="loginPemilik" method="post">
                         <div class="row">
+                            <div class="col-sm">
+                                <center>
+                                    <img class="img-fluid" src="Assets/owner.svg" alt="" style="width: 70%;">
+
+                                    <h3 style="margin-top: 8%;"> Bergabung bersama kami untuk memasarkan lapangan anda! </h3>
+                                </center>
+
+                                <!-- <a href="#0" class="close-form">Close</a> -->
+                            </div>
                             <div class="col-sm">
                                 <p class="fieldset">
                                     <label class="image-replace email" for="signin-email">E-mail</label>
                                     <input class="full-width has-padding has-border" id="signin-emaillap"
-                                           type="email" placeholder="E-mail">
+                                           type="email" placeholder="E-mail" name="email">
                                     <span class="error-message">An account with this email address does not exist!</span>
                                 </p>
 
                                 <p class="fieldset">
                                     <label class="image-replace password" for="signin-password">Password</label>
                                     <input class="full-width has-padding has-border" id="signin-passwordlap"
-                                           type="password" placeholder="Password">
+                                           type="password" placeholder="Password" name="password">
                                     <a href="#0" class="hide-password">Show</a>
                                     <span class="error-message">Wrong password! Try again.</span>
                                 </p>
@@ -126,15 +135,7 @@ if (!isset($_SESSION)) session_start();
                         </div>
                     </form>
                 </div>
-                <div class="col-sm">
-                    <center>
-                        <img class="img-fluid" src="Assets/owner.svg" alt="" style="width: 70%;">
 
-                        <h3 style="margin-top: 8%;"> Bergabung bersama kami untuk memasarkan lapangan anda! </h3>
-                    </center>
-
-                    <!-- <a href="#0" class="close-form">Close</a> -->
-                </div>
             </div>
         </div>
         <!-- LOGIN LAPANGAN -->
@@ -195,7 +196,7 @@ if (!isset($_SESSION)) session_start();
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">History</a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="logout">Logout</a>
                     </div>
                 </div>
             </div>

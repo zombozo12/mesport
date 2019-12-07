@@ -21,17 +21,26 @@ switch ($segment) {
     break;
 
     case 'registbook' :
-        include_once('views/registbook.php');
+        include_once('views/registerbook.php');
         break;
 
     case 'registpemilik' :
-        include_once('views/registpemilik.php');
+        include_once('views/registerpemilik.php');
         break;
-    case 'registerProcess' :
-        $auth->registerProcess();
+    case 'registerUser' :
+        $auth->registerUser();
         break;
-    case 'loginProcess':
-        $auth->login();
+    case 'registerPemilik':
+        $auth->registerPemilik();
+         break;
+    case 'loginUser':
+        $auth->loginUser();
+        break;
+    case 'loginPemilik':
+        $auth->loginPemilik();
+        break;
+    case 'logout':
+        $auth->logout();
         break;
     default :
     echo '404 Not Found';
