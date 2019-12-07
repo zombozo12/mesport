@@ -81,9 +81,6 @@ jQuery(document).ready(function($){
     $tab_signup.addClass('selected');
   }
 
-
-
-
   //IE9 placeholder fallback
   //credits http://www.hagenburger.net/BLOG/HTML5-Input-Placeholder-Fix-With-jQuery.html
   if(!Modernizr.input.placeholder){

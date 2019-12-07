@@ -20,7 +20,6 @@ if (!isset($_SESSION)) session_start();
     <script src="Assets/js/modal.js"></script>
     <title>MeSport</title>
 </head>
-<script src="Assets/js/modal.js"></script>
 
 
 <body>
@@ -69,7 +68,7 @@ if (!isset($_SESSION)) session_start();
                                         <p class="fieldset">
                                             <label class="image-replace email" for="signin-email">E-mail</label>
                                             <input class="full-width has-padding has-border" id="signin-email"
-                                                   type="email" placeholder="E-mail">
+                                                   type="email" placeholder="E-mail" name="email">
                                             <span class="error-message">An account with this email address does not exist!</span>
                                         </p>
 
@@ -77,7 +76,7 @@ if (!isset($_SESSION)) session_start();
                                             <label class="image-replace password"
                                                    for="signin-password">Password</label>
                                             <input class="full-width has-padding has-border" id="signin-password"
-                                                   type="password" placeholder="Password">
+                                                   type="password" placeholder="Password" name="password">
                                             <a href="#0" class="hide-password">Show</a>
                                             <span class="error-message">Wrong password! Try again.</span>
                                         </p>
@@ -123,10 +122,9 @@ if (!isset($_SESSION)) session_start();
                                 <p class="fieldset">
                                     <input class="full-width" type="submit" value="Login Sebagai Pemilik Lapangan">
                                 </p>
-
+                            </div>
+                        </div>
                     </form>
-
-
                 </div>
                 <div class="col-sm">
                     <center>
@@ -165,48 +163,45 @@ if (!isset($_SESSION)) session_start();
                         <p class="fieldset">
                             <input class="full-width" type="submit" value="Login Sebagai Pemilik Lapangan">
                         </p>
+                    </div>
+                </div>
             </form>
-
             <!-- <a href="#0" class="cd-close-form">Close</a> -->
         </div>
-
         <!-- End Modal Section -->
-
     </nav>
     <!-- belum login  end -->
 
     <!-- udah login -->
 
 <?php } else { ?>
-<nav class=" navbar navbar-expand-md navbar-light bg-white fixed-nav-bar ">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="home">
-            <img src="Assets/logo MeSport!.png" alt="Logo" style="width: 100px;">
-        </a>
+    <nav class=" navbar navbar-expand-md navbar-light bg-white fixed-nav-bar ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home">
+                <img src="Assets/logo MeSport!.png" alt="Logo" style="width: 100px;">
+            </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
 
-            </ul>
+                </ul>
 
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Username
+                <!-- Right Side Of Navbar -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?= $_SESSION['email']; ?>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Histori</a>
+                        <a class="dropdown-item" href="#">History</a>
                         <a class="dropdown-item" href="#">Logout</a>
                     </div>
-                </li>
-            </ul>
-            <?php } ?>
-            <!-- udah login end -->
+                </div>
+            </div>
+        </div>
+    </nav>
+<?php } ?>
+<!-- udah login end -->
 </body>
 </html>

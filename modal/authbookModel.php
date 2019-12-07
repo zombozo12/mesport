@@ -49,7 +49,7 @@ class authbookModel
 
     function session($data)
     {
-        $query = "SELECT * FROM user_table WHERE id='" . $data . "'";
+        $query = "SELECT * FROM tbl_user WHERE id='" . $data . "'";
         $ret = mysqli_query($this->connect, $query);
         $data = mysqli_fetch_assoc($ret);
 
