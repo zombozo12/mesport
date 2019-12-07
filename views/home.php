@@ -1,7 +1,7 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE html>
+<!-- 
 <html lang="en">
 
 <head>
@@ -13,12 +13,13 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" type="text/css" href="Assets/css/modal.css">
+    
     <title>MeSport</title>
 
 </head>
 
-<body>
+<body> -->
 <?php include_once('navbar.php') ?>
 
 <div class="header" style="text-align: center; margin-top: 5%;">
