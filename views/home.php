@@ -1,25 +1,6 @@
 <?php
 session_start();
 ?>
-<!-- 
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="Assets/css/modal.css">
-    
-    <title>MeSport</title>
-
-</head>
-
-<body> -->
 <?php include_once('navbar.php') ?>
 
 <div class="header" style="text-align: center; margin-top: 5%;">
@@ -27,16 +8,16 @@ session_start();
     <h1>Pesan lapangan disekitar anda</h1>
     <div class="row d-flex justify-content-center" style="margin-top: 1%;">
         <div class="col-md-4 ">
-            <form action="search.php">
+            <form action="cariLapangan" method="post">
                 <div class="input-group-prepend mb-3 stroke">
                     <input type="text" class="form-control" placeholder="Cari lapangan" id="search"
-                           aria-describedby="basic-addon2">
+                           aria-describedby="basic-addon2" name="cari">
                     <div class="input-group-append">
                         <button class="btn warnabtn " type="submit" name="cari">Cari</button>
+                    </div>
             </form>
         </div>
     </div>
-</div>
 </div>
 
 <br>

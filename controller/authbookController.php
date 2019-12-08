@@ -122,6 +122,18 @@ class authbookController
         }
     }
 
+    public function cariLapangan(){
+        $param = $_POST;
+
+        $result = $this->model->cariLapangan($param);
+
+        if ($result) {
+            header('Location: listLapangan');
+        } else {
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="home"; </script>';
+        }
+    }
+
     public function tambahLapangan(){
         $param = $_POST;
         $file  = $_FILES;

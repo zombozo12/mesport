@@ -58,6 +58,13 @@ switch ($segment) {
         break;
     //END PROFILE
 
+    case 'cariLapangan':
+        $auth->cariLapangan();
+        break;
+    case 'listLapangan':
+        include_once "views/listLapangan.php";
+        break;
+
     //LAPANGAN PEMILIK
     case 'listPemilik':
         include_once "views/listPemilik.php";

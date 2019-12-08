@@ -307,6 +307,39 @@ class authbookModel
         return $lapangan;
     }
 
+    function cariLapangan($cari){
+        session_start();
+        unset($_SESSION['lapangan']);
+        $search = mysqli_real_escape_string($this->connect, "%{$cari['cari']}%");
+
+        $get = $this->connect->prepare("SELECT id, nama, jenis, lokasi, deskripsi, harga, kategori, foto FROM tbl_lapangan WHERE nama LIKE CONCAT('%',?,'%')");
+        $get->bind_param('s', $search);
+        $get->execute();
+        $get->store_result();
+
+        if($get->num_rows == 0){
+            $_SESSION['message'] = "lapangan tidak ditemukan";
+            return false;
+        }
+
+        $get->bind_result($id, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
+
+        $_SESSION['lapangan'] = array();
+        while($row = $get->fetch()){
+            array_push($_SESSION['lapangan'], [
+                'id' => $id,
+                'nama' => $nama,
+                'jenis' => $jenis,
+                'lokasi' => $lokasi,
+                'deskripsi' => $deskripsi,
+                'harga' => $harga,
+                'kategori' => $kategori,
+                'foto' => $foto
+            ]);
+        }
+        return $_SESSION['lapangan'];
+    }
+
     function tambahLapangan($params, $files){
         session_start();
 

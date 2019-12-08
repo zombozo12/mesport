@@ -191,12 +191,26 @@ if (!isset($_SESSION)) session_start();
                 <!-- Right Side Of Navbar -->
                 <div class="dropdown">
                     <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?= $_SESSION['email']; ?>
+                        <?= $_SESSION['nama']; ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">History</a>
-                        <a class="dropdown-item" href="logout">Logout</a>
+                        <?php
+                        if($_SESSION['role'] === 'user'){
+                            ?>
+                            <a class="dropdown-item" href="profileUser">Profile</a>
+                            <a class="dropdown-item" href="#">History</a>
+                            <a class="dropdown-item" href="logout">Logout</a>
+                            <?php
+                        }else{
+                            ?>
+                            <a class="dropdown-item" href="profilePemilik">Profile</a>
+                            <a class="dropdown-item" href="#">History</a>
+                            <a class="dropdown-item" href="logout">Logout</a>
+                            <?php
+                        }
+
+                        ?>
+
                     </div>
                 </div>
             </div>
