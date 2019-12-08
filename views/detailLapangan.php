@@ -48,14 +48,28 @@ foreach ($model->getLapanganUser($_GET['id']) as $data) {
                         <input type="hidden" name="idLapangan" value="<?= $_GET['id'] ?>">
                         <input type="hidden" name="idPemilik" value="<?= $idPemilik ?>">
                         <div class="form-group">
-                            <label for="formGroupExampleInput" style="color: white; font: bold;">Start Booking</label>
-                            <input type="date" class="form-control" id="formGroupExampleInput" placeholder=""
-                                   name="start">
+                            <label for="exampleFormControlSelect1">Start Booking</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="start">
+                                <?php
+                                    for($i = 10; $i <= 19; $i++){
+                                        ?>
+                                        <option value="<?= $i .':00'  ?>"><?= $i .':00' ?></option>
+                                        <?php
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="formGroupExampleInput2" style="color: white; font: bold;">End Booking</label>
-                            <input type="date" class="form-control" id="formGroupExampleInput2"
-                                   placeholder="" name="end">
+                            <label for="exampleFormControlSelect1">End Lapangan</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="end">
+                                <?php
+                                for($i = 10; $i <= 19; $i++){
+                                    ?>
+                                    <option value="<?= $i .':00'  ?>"><?= $i .':00' ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
