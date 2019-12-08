@@ -45,7 +45,7 @@ foreach($_SESSION['lapangan'] as $data) {
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <a href="DetLap.html" style="text-decoration: none;">
+                        <a href="views/detailLapangan.php?id=<?= $data['id'] ?>" style="text-decoration: none;">
                             <h5 class="card-title" style="font-weight: bold; color: whitesmoke;"><?= $data['nama']?></h5>
                             <p class="card-text" style="color: whitesmoke;"><?= $data['jenis'] ?></p>
                             <p class="card-text" style="color: whitesmoke;">
