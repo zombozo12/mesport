@@ -198,13 +198,13 @@ if (!isset($_SESSION)) session_start();
                         if($_SESSION['role'] === 'user'){
                             ?>
                             <a class="dropdown-item" href="profileUser">Profile</a>
-                            <a class="dropdown-item" href="#">History</a>
+                            <a class="dropdown-item" href="historyUser">History</a>
                             <a class="dropdown-item" href="logout">Logout</a>
                             <?php
                         }else{
                             ?>
                             <a class="dropdown-item" href="profilePemilik">Profile</a>
-                            <a class="dropdown-item" href="#">History</a>
+                            <a class="dropdown-item" href="historyPemilik">History</a>
                             <a class="dropdown-item" href="logout">Logout</a>
                             <?php
                         }
