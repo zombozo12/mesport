@@ -547,6 +547,53 @@ class authbookModel
         return $histori;
     }
 
+    function pesananMasuk(){
+        $status = 'Pending';
+        $hPemilik = $this->connect->prepare('SELECT tbl_acc.id, tbl_lapangan.nama, tbl_booking.start, tbl_booking.end, tbl_acc.status, tbl_user.nama FROM tbl_acc
+            JOIN tbl_booking ON tbl_booking.id = tbl_acc.id_booking
+            JOIN tbl_lapangan ON tbl_lapangan.id = tbl_booking.id_lapangan
+            JOIN tbl_user ON tbl_user.id = tbl_booking.id_pengguna
+            WHERE tbl_acc.id_pemilik = ? AND tbl_acc.status = ?');
+        $hPemilik->bind_param('is', $_SESSION['id'], $status);
+        $hPemilik->execute();
+        $hPemilik->store_result();
+
+        if($hPemilik->num_rows == 0){
+            $_SESSION['message'] = "gagal merubah lapangan";
+            return false;
+        }
+
+        $hPemilik->bind_result($id_acc, $nama_lapangan, $book_start, $book_end, $acc_status, $nama_pengguna);
+
+        $histori = array();
+        while ($hPemilik->fetch()) {
+            array_push($histori, [
+                'id_acc' => $id_acc,
+                'nama_lapangan' => $nama_lapangan,
+                'book_start' => $book_start,
+                'book_end' => $book_end,
+                'acc_status' => $acc_status,
+                'nama_pengguna' => $nama_pengguna
+            ]);
+        }
+        return $histori;
+    }
+
+    function ubahStatusPesanan($id, $status){
+        $id     = mysqli_real_escape_string($this->connect, $id);
+
+        $uStatus = $this->connect->prepare('UPDATE tbl_acc SET status = ? WHERE id = ?');
+        $uStatus->bind_param('si', $status, $id);
+        $uStatus->execute();
+        $uStatus->store_result();
+
+        if($uStatus->affected_rows == 0){
+            $_SESSION['message'] = "gagal merubah status";
+            return false;
+        }
+        return true;
+    }
+
     function delete($id)
     {
         $query = "DELETE FROM user_table WHERE id='" . $id . "'";
