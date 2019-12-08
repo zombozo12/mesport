@@ -68,6 +68,10 @@ switch ($segment) {
         $auth->bookLapangan();
         break;
 
+    case 'historyUser':
+        include_once 'views/historyUser.php';
+        break;
+
     //LAPANGAN PEMILIK
     case 'listPemilik':
         include_once "views/listPemilik.php";

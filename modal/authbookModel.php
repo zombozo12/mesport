@@ -11,7 +11,7 @@ class authbookModel
 
     function loginUser($params)
     {
-        $email    = mysqli_real_escape_string($this->connect, $params['email']);
+        $email = mysqli_real_escape_string($this->connect, $params['email']);
         $password = mysqli_real_escape_string($this->connect, $params['password']);
         $password = md5($password);
 
@@ -35,7 +35,7 @@ class authbookModel
 
     function loginPemilik($params)
     {
-        $email    = mysqli_real_escape_string($this->connect, $params['email']);
+        $email = mysqli_real_escape_string($this->connect, $params['email']);
         $password = mysqli_real_escape_string($this->connect, $params['password']);
         $password = md5($password);
 
@@ -66,12 +66,12 @@ class authbookModel
         $password = md5($password);
         $jenis_kelamin = mysqli_real_escape_string($this->connect, $params['jenis_kelamin']);
 
-        if($this->checkUser($email)){
+        if ($this->checkUser($email)) {
             $_SESSION['message'] = "Email sudah terdaftar";
             return false;
         }
 
-        if($this->checkPemilik($email)){
+        if ($this->checkPemilik($email)) {
             $_SESSION['message'] = "Email sudah terdaftar";
             return false;
         }
@@ -96,12 +96,12 @@ class authbookModel
         $password = md5($password);
         $jenis_kelamin = mysqli_real_escape_string($this->connect, $params['jenis_kelamin']);
 
-        if($this->checkUser($email)){
+        if ($this->checkUser($email)) {
             $_SESSION['message'] = "Email sudah terdaftar";
             return false;
         }
 
-        if($this->checkPemilik($email)){
+        if ($this->checkPemilik($email)) {
             $_SESSION['message'] = "Email sudah terdaftar";
             return false;
         }
@@ -117,26 +117,28 @@ class authbookModel
         return true;
     }
 
-    function checkUser($email){
+    function checkUser($email)
+    {
         $cUser = $this->connect->prepare('SELECT * FROM tbl_user WHERE email = ?');
         $cUser->bind_param('s', $email);
         $cUser->execute();
         $cUser->store_result();
 
-        if($cUser->num_rows == 0){
+        if ($cUser->num_rows == 0) {
             return false;
         }
 
         return true;
     }
 
-    function checkPemilik($email){
+    function checkPemilik($email)
+    {
         $cUser = $this->connect->prepare('SELECT * FROM tbl_user WHERE email = ?');
         $cUser->bind_param('s', $email);
         $cUser->execute();
         $cUser->store_result();
 
-        if($cUser->num_rows == 0){
+        if ($cUser->num_rows == 0) {
             return false;
         }
 
@@ -150,12 +152,12 @@ class authbookModel
         $data = mysqli_fetch_assoc($ret);
 
         if (!isset($_SESSION)) session_start();
-        $_SESSION['id']     = $data['id'];
-        $_SESSION['nama']   = $data['nama'];
+        $_SESSION['id'] = $data['id'];
+        $_SESSION['nama'] = $data['nama'];
         $_SESSION['kontak'] = $data['kontak'];
-        $_SESSION['email']  = $data['email'];
-        $_SESSION['foto']   = $data['foto'];
-        $_SESSION['role']   = 'user';
+        $_SESSION['email'] = $data['email'];
+        $_SESSION['foto'] = $data['foto'];
+        $_SESSION['role'] = 'user';
     }
 
     function sessionPemilik($data)
@@ -165,12 +167,12 @@ class authbookModel
         $data = mysqli_fetch_assoc($ret);
 
         if (!isset($_SESSION)) session_start();
-        $_SESSION['id']     = $data['id'];
-        $_SESSION['nama']   = $data['nama'];
+        $_SESSION['id'] = $data['id'];
+        $_SESSION['nama'] = $data['nama'];
         $_SESSION['kontak'] = $data['kontak'];
-        $_SESSION['email']  = $data['email'];
-        $_SESSION['foto']   = $data['foto'];
-        $_SESSION['role']   = 'pemilik';
+        $_SESSION['email'] = $data['email'];
+        $_SESSION['foto'] = $data['foto'];
+        $_SESSION['role'] = 'pemilik';
     }
 
     function generateRandomString($length = 10)
@@ -184,7 +186,8 @@ class authbookModel
         return $randomString;
     }
 
-    function updateProfileUser($params, $files){
+    function updateProfileUser($params, $files)
+    {
         session_start();
         $nama = mysqli_real_escape_string($this->connect, $params['nama']);
         $nohp = mysqli_real_escape_string($this->connect, $params['nohp']);
@@ -215,7 +218,8 @@ class authbookModel
         return true;
     }
 
-    function updateProfilePemilik($params, $files){
+    function updateProfilePemilik($params, $files)
+    {
         session_start();
         $nama = mysqli_real_escape_string($this->connect, $params['nama']);
         $nohp = mysqli_real_escape_string($this->connect, $params['nohp']);
@@ -246,14 +250,15 @@ class authbookModel
         return true;
     }
 
-    function getAllLapangan(){
+    function getAllLapangan()
+    {
 
         $get = $this->connect->prepare('SELECT id, nama, jenis, lokasi, deskripsi, harga, kategori, foto FROM tbl_lapangan WHERE id_pemilik = ?');
         $get->bind_param('i', $_SESSION['id']);
         $get->execute();
         $get->store_result();
 
-        if($get->num_rows == 0){
+        if ($get->num_rows == 0) {
             $_SESSION['message'] = "Pemilik belum memiliki lapangan";
             return false;
         }
@@ -261,7 +266,7 @@ class authbookModel
         $get->bind_result($id, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
 
         $lapangan = array();
-        while($row = $get->fetch()){
+        while ($row = $get->fetch()) {
             array_push($lapangan, [
                 'id' => $id,
                 'nama' => $nama,
@@ -276,7 +281,8 @@ class authbookModel
         return $lapangan;
     }
 
-    function getLapangan($id){
+    function getLapangan($id)
+    {
         $idLapangan = mysqli_real_escape_string($this->connect, $id);
 
         $get = $this->connect->prepare('SELECT id, nama, jenis, lokasi, deskripsi, harga, kategori, foto FROM tbl_lapangan WHERE id = ? AND id_pemilik = ?');
@@ -284,7 +290,7 @@ class authbookModel
         $get->execute();
         $get->store_result();
 
-        if($get->num_rows == 0){
+        if ($get->num_rows == 0) {
             $_SESSION['message'] = "Pemilik belum memiliki lapangan";
             return false;
         }
@@ -292,7 +298,7 @@ class authbookModel
         $get->bind_result($id, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
 
         $lapangan = array();
-        while($row = $get->fetch()){
+        while ($row = $get->fetch()) {
             array_push($lapangan, [
                 'id' => $id,
                 'nama' => $nama,
@@ -307,7 +313,8 @@ class authbookModel
         return $lapangan;
     }
 
-    function getLapanganUser($id){
+    function getLapanganUser($id)
+    {
         $idLapangan = mysqli_real_escape_string($this->connect, $id);
 
         $get = $this->connect->prepare('SELECT id, id_pemilik, nama, jenis, lokasi, deskripsi, harga, kategori, foto FROM tbl_lapangan WHERE id = ?');
@@ -315,7 +322,7 @@ class authbookModel
         $get->execute();
         $get->store_result();
 
-        if($get->num_rows == 0){
+        if ($get->num_rows == 0) {
             $_SESSION['message'] = "Pemilik belum memiliki lapangan";
             return false;
         }
@@ -323,7 +330,7 @@ class authbookModel
         $get->bind_result($id, $id_pemilik, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
 
         $lapangan = array();
-        while($row = $get->fetch()){
+        while ($row = $get->fetch()) {
             array_push($lapangan, [
                 'id' => $id,
                 'id_pemilik' => $id_pemilik,
@@ -339,7 +346,8 @@ class authbookModel
         return $lapangan;
     }
 
-    function cariLapangan($cari){
+    function cariLapangan($cari)
+    {
         session_start();
         unset($_SESSION['lapangan']);
         $search = mysqli_real_escape_string($this->connect, "%{$cari['cari']}%");
@@ -349,7 +357,7 @@ class authbookModel
         $get->execute();
         $get->store_result();
 
-        if($get->num_rows == 0){
+        if ($get->num_rows == 0) {
             $_SESSION['message'] = "lapangan tidak ditemukan";
             return false;
         }
@@ -357,7 +365,7 @@ class authbookModel
         $get->bind_result($id, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
 
         $_SESSION['lapangan'] = array();
-        while($row = $get->fetch()){
+        while ($row = $get->fetch()) {
             array_push($_SESSION['lapangan'], [
                 'id' => $id,
                 'nama' => $nama,
@@ -372,25 +380,26 @@ class authbookModel
         return $_SESSION['lapangan'];
     }
 
-    function bookLapangan($params){
+    function bookLapangan($params)
+    {
         session_start();
         $idLapangan = mysqli_real_escape_string($this->connect, $params['idLapangan']);
-        $start      = mysqli_real_escape_string($this->connect, $params['start']);
-        $end        = mysqli_real_escape_string($this->connect, $params['end']);
-        $idUser     = mysqli_real_escape_string($this->connect, $_SESSION['id']);
+        $start = mysqli_real_escape_string($this->connect, $params['start']);
+        $end = mysqli_real_escape_string($this->connect, $params['end']);
+        $idUser = mysqli_real_escape_string($this->connect, $_SESSION['id']);
 
         $bLap = $this->connect->prepare('INSERT INTO tbl_booking(id_pengguna, id_lapangan, start, end) VALUES(?,?,?,?)');
         $bLap->bind_param('iiss', $idUser, $idLapangan, $start, $end);
         $bLap->execute();
         $bLap->store_result();
 
-        if($bLap->affected_rows == 0){
+        if ($bLap->affected_rows == 0) {
             $_SESSION['message'] = "gagal booking lapangan";
             return false;
         }
 
         $idBooking = $bLap->insert_id;
-        $idPemilik  = mysqli_real_escape_string($this->connect, $params['idPemilik']);
+        $idPemilik = mysqli_real_escape_string($this->connect, $params['idPemilik']);
         $status = 'Pending';
 
         $aLap = $this->connect->prepare('INSERT INTO tbl_acc(id_pemilik, id_booking, status) VALUES(?,?,?)');
@@ -398,7 +407,7 @@ class authbookModel
         $aLap->execute();
         $aLap->store_result();
 
-        if($aLap->affected_rows == 0){
+        if ($aLap->affected_rows == 0) {
             $_SESSION['message'] = "gagal memasukan konfirmasi";
             return false;
         }
@@ -406,20 +415,21 @@ class authbookModel
         return true;
     }
 
-    function tambahLapangan($params, $files){
+    function tambahLapangan($params, $files)
+    {
         session_start();
 
-        $idPemilik  = mysqli_real_escape_string($this->connect, $_SESSION['id']);
-        $nama       = mysqli_real_escape_string($this->connect, $params['nama']);
-        $jenis      = mysqli_real_escape_string($this->connect, $params['jenis']);
-        $lokasi     = mysqli_real_escape_string($this->connect, $params['lokasi']);
-        $deskripsi  = mysqli_real_escape_string($this->connect, $params['deskripsi']);
-        $harga      = mysqli_real_escape_string($this->connect, $params['harga']);
-        $kategori   = mysqli_real_escape_string($this->connect, $params['kategori']);
+        $idPemilik = mysqli_real_escape_string($this->connect, $_SESSION['id']);
+        $nama = mysqli_real_escape_string($this->connect, $params['nama']);
+        $jenis = mysqli_real_escape_string($this->connect, $params['jenis']);
+        $lokasi = mysqli_real_escape_string($this->connect, $params['lokasi']);
+        $deskripsi = mysqli_real_escape_string($this->connect, $params['deskripsi']);
+        $harga = mysqli_real_escape_string($this->connect, $params['harga']);
+        $kategori = mysqli_real_escape_string($this->connect, $params['kategori']);
 
-        $namaFoto   = $this->generateRandomString() . '.' . pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
-        $tmpFoto    = $files['foto']['tmp_name'];
-        $pathDir    = 'Assets/img/';
+        $namaFoto = $this->generateRandomString() . '.' . pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
+        $tmpFoto = $files['foto']['tmp_name'];
+        $pathDir = 'Assets/img/';
 
         $upload = move_uploaded_file($tmpFoto, $pathDir . $namaFoto);
 
@@ -432,7 +442,7 @@ class authbookModel
         $tLapangan->execute();
         $tLapangan->store_result();
 
-        if($tLapangan->num_rows == 0){
+        if ($tLapangan->num_rows == 0) {
             $_SESSION['message'] = "gagal menambahkan lapangan";
             return false;
         }
@@ -440,21 +450,22 @@ class authbookModel
         return true;
     }
 
-    function updateLapangan($params, $files){
+    function updateLapangan($params, $files)
+    {
         session_start();
 
         $idLapangan = mysqli_real_escape_string($this->connect, $params['idLapangan']);
-        $idPemilik  = mysqli_real_escape_string($this->connect, $_SESSION['id']);
-        $nama       = mysqli_real_escape_string($this->connect, $params['nama']);
-        $jenis      = mysqli_real_escape_string($this->connect, $params['jenis']);
-        $lokasi     = mysqli_real_escape_string($this->connect, $params['lokasi']);
-        $deskripsi  = mysqli_real_escape_string($this->connect, $params['deskripsi']);
-        $harga      = mysqli_real_escape_string($this->connect, $params['harga']);
-        $kategori   = mysqli_real_escape_string($this->connect, $params['kategori']);
+        $idPemilik = mysqli_real_escape_string($this->connect, $_SESSION['id']);
+        $nama = mysqli_real_escape_string($this->connect, $params['nama']);
+        $jenis = mysqli_real_escape_string($this->connect, $params['jenis']);
+        $lokasi = mysqli_real_escape_string($this->connect, $params['lokasi']);
+        $deskripsi = mysqli_real_escape_string($this->connect, $params['deskripsi']);
+        $harga = mysqli_real_escape_string($this->connect, $params['harga']);
+        $kategori = mysqli_real_escape_string($this->connect, $params['kategori']);
 
-        $namaFoto   = $this->generateRandomString() . '.' . pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
-        $tmpFoto    = $files['foto']['tmp_name'];
-        $pathDir    = 'Assets/img/';
+        $namaFoto = $this->generateRandomString() . '.' . pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
+        $tmpFoto = $files['foto']['tmp_name'];
+        $pathDir = 'Assets/img/';
 
         $upload = move_uploaded_file($tmpFoto, $pathDir . $namaFoto);
 
@@ -467,12 +478,45 @@ class authbookModel
         $uLapangan->execute();
         $uLapangan->store_result();
 
-        if($uLapangan->affected_rows == 0){
+        if ($uLapangan->affected_rows == 0) {
             $_SESSION['message'] = "gagal merubah lapangan";
             return false;
         }
 
         return true;
+    }
+
+    function historyUser(){
+        $idUser = mysqli_real_escape_string($this->connect, $_SESSION['id']);
+
+        $hUser = $this->connect->prepare(
+            'SELECT tbl_lapangan.nama, tbl_booking.start, tbl_booking.end, tbl_acc.status FROM tbl_booking
+                INNER JOIN tbl_lapangan ON tbl_lapangan.id = tbl_booking.id_lapangan
+                INNER JOIN tbl_acc ON tbl_acc.id_booking = tbl_booking.id
+                WHERE tbl_booking.id_pengguna = ?;'
+        );
+        $hUser->bind_param('i', $idUser);
+        $hUser->execute();
+        $hUser->store_result();
+
+        if($hUser->num_rows == 0){
+            $_SESSION['message'] = "gagal merubah lapangan";
+            return false;
+        }
+
+        $hUser->bind_result($nama_lapangan, $book_start, $book_end, $acc_status);
+
+        $histori = array();
+        while ($hUser->fetch()) {
+            array_push($histori, [
+                'nama_lapangan' => $nama_lapangan,
+                'book_start' => $book_start,
+                'book_end' => $book_end,
+                'acc_status' => $acc_status,
+            ]);
+        }
+        return $histori;
+
     }
 
     function delete($id)
