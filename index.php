@@ -75,6 +75,9 @@ switch ($segment) {
         include_once 'views/historyPemilik.php';
         break;
 
+    case 'pesananPemilik':
+        include_once 'views/pesananPemilik.php';
+        break;
     //LAPANGAN PEMILIK
     case 'listPemilik':
         include_once "views/listPemilik.php";

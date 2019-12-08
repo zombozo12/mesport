@@ -17,6 +17,7 @@
 </head>
 <body>
 <!-- Side Navbar -->
+
 <?php
 include('views/pemilik/sidebar.php');
 $model = new authbookModel();
@@ -28,36 +29,43 @@ $model = new authbookModel();
         <div class="container-fluid">
             <!-- Page Header-->
             <header>
-                <h1 class="h3 display">Histori Pesanan </h1>
+                <h1 class="h3 display">Pesanan Masuk </h1>
             </header>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                    <tr style="background-color: #F4BA10; color: white; font: bold;">
+                    <tr>
                         <th>#</th>
+                        <th>Nama Pengguna</th>
                         <th>Nama Lapangan</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Konfirmasi</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     $no = 1;
-                    foreach ($model->historyPesanan() as $data) {
+                    foreach ($model->pesananMasuk() as $data) {
                         ?>
                         <tr>
                             <th scope="row"><?= $no++; ?></th>
+                            <td><?= $data['nama_pengguna'] ?></td>
                             <td><?= $data['nama_lapangan'] ?></td>
                             <td><?= $data['book_start'] . ' - ' . $data['book_end']?></td>
                             <td><?= $data['acc_status'] ?></td>
+                            <td>
+                                <a href="/views/konfirmPesanan.php?id=<?= $data['id_acc']; ?>" class="btn btn-warning">Konfirm</a>
+                                <a href="/views/tolakPesanan.php?id=<?= $data['id_acc']; ?>" class="btn btn-danger">Tolak</a>
+                            </td>
                         </tr>
                         <?php
                     }
                     ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
+
+
     </section>
 </div>
 <!-- JavaScript files-->
