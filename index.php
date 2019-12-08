@@ -66,8 +66,10 @@ switch ($segment) {
         include_once 'views/tambahLapangan.php';
         break;
     case 'tLapanganProses':
-        //TODO: insert lapangan
         $auth->tambahLapangan();
+        break;
+    case 'uLapangan':
+        $auth->updateLapangan();
         break;
 
     //HISTORY Pemilik

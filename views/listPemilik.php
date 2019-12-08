@@ -45,13 +45,14 @@ $model = new authbookModel();
                         <div class="card-body">
                             <h5 class="card-title"><?= $data['nama'] ?></h5>
                             <p class="card-text"><?= $data['deskripsi'] ?></p>
-                            <a href="editLapangan/<?= $data['id']; ?>">
+                        </div>
+                        <div class="card-footer">
+                            <a href="views/editLapangan.php?id=<?= $data['id']; ?>">
                                 <button class="btn btn-warning">Edit</button>
                             </a>
                             <a href="views/deleteLapangan.php?id=<?= $data['id']; ?>">
                                 <button class="btn btn-danger">Delete</button>
                             </a>
-
                         </div>
                     </div>
                     <?php
