@@ -493,7 +493,7 @@ class authbookModel
             'SELECT tbl_lapangan.nama, tbl_booking.start, tbl_booking.end, tbl_acc.status FROM tbl_booking
                 INNER JOIN tbl_lapangan ON tbl_lapangan.id = tbl_booking.id_lapangan
                 INNER JOIN tbl_acc ON tbl_acc.id_booking = tbl_booking.id
-                WHERE tbl_booking.id_pengguna = ?;'
+                WHERE tbl_booking.id_pengguna = ?'
         );
         $hUser->bind_param('i', $idUser);
         $hUser->execute();
@@ -517,6 +517,34 @@ class authbookModel
         }
         return $histori;
 
+    }
+
+    function historyPesanan(){
+        $hPemilik = $this->connect->prepare('SELECT tbl_lapangan.nama, tbl_booking.start, tbl_booking.end, tbl_acc.status FROM tbl_acc
+            JOIN tbl_booking ON tbl_booking.id = tbl_acc.id_booking
+            JOIN tbl_lapangan ON tbl_lapangan.id = tbl_booking.id_lapangan
+            WHERE tbl_acc.id_pemilik = ?');
+        $hPemilik->bind_param('i', $_SESSION['id']);
+        $hPemilik->execute();
+        $hPemilik->store_result();
+
+        if($hPemilik->num_rows == 0){
+            $_SESSION['message'] = "gagal merubah lapangan";
+            return false;
+        }
+
+        $hPemilik->bind_result($nama_lapangan, $book_start, $book_end, $acc_status);
+
+        $histori = array();
+        while ($hPemilik->fetch()) {
+            array_push($histori, [
+                'nama_lapangan' => $nama_lapangan,
+                'book_start' => $book_start,
+                'book_end' => $book_end,
+                'acc_status' => $acc_status,
+            ]);
+        }
+        return $histori;
     }
 
     function delete($id)

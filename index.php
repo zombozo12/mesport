@@ -71,6 +71,9 @@ switch ($segment) {
     case 'historyUser':
         include_once 'views/historyUser.php';
         break;
+    case 'historyPemilik':
+        include_once 'views/historyPemilik.php';
+        break;
 
     //LAPANGAN PEMILIK
     case 'listPemilik':
@@ -86,9 +89,6 @@ switch ($segment) {
         $auth->updateLapangan();
         break;
 
-    //HISTORY Pemilik
-    case 'historyPemilik':
-        break;
 
     //PESANAN MASUK
     case 'pesananPemilik':
