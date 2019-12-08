@@ -120,7 +120,19 @@ class authbookController
         } else {
             echo '<script>alert("' . $_SESSION['message'] . '"); window.location="profilePemilik"; </script>';
         }
+    }
 
+    public function tambahLapangan(){
+        $param = $_POST;
+        $file  = $_FILES;
+
+        $result = $this->model->tambahLapangan($param, $file);
+
+        if ($result) {
+            header('Location: tambahLapangan');
+        } else {
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="home"; </script>';
+        }
     }
 
     public function logout()

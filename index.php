@@ -58,8 +58,16 @@ switch ($segment) {
         break;
     //END PROFILE
 
-    //LIST LAPANGAN PEMILIK
+    //LAPANGAN PEMILIK
     case 'listPemilik':
+        include_once "views/listPemilik.php";
+        break;
+    case 'tambahLapangan':
+        include_once 'views/tambahLapangan.php';
+        break;
+    case 'tLapanganProses':
+        //TODO: insert lapangan
+        $auth->tambahLapangan();
         break;
 
     //HISTORY Pemilik

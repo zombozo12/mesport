@@ -201,7 +201,7 @@
     </column>
     <column id="106" parent="82" name="jenis">
       <Position>4</Position>
-      <DataType>enum(&apos;Bola&apos;, &apos;Badminton&apos;, &apos;Futsal&apos;, &apos;Tenis&apos;, &apos;Basket&apos;)|0</DataType>
+      <DataType>enum(&apos;Lapangan Bola&apos;, &apos;Lapangan Badminton&apos;, &apos;Lapangan Futsal&apos;, &apos;Lapangan Tenis&apos;, &apos;Lapangan Basket&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="107" parent="82" name="lokasi">
@@ -224,15 +224,20 @@
       <DataType>enum(&apos;Indoor&apos;, &apos;Outdoor&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="111" parent="82" name="id_pemilik">
+    <column id="111" parent="82" name="foto">
+      <Position>9</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="112" parent="82" name="id_pemilik">
       <ColNames>id_pemilik</ColNames>
     </index>
-    <key id="112" parent="82" name="PRIMARY">
+    <key id="113" parent="82" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="113" parent="82" name="tbl_lapangan_ibfk_1">
+    <foreign-key id="114" parent="82" name="tbl_lapangan_ibfk_1">
       <ColNames>id_pemilik</ColNames>
       <RefSchemaName>db_mesport</RefSchemaName>
       <RefTableName>tbl_pemilik</RefTableName>
@@ -240,84 +245,84 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="114" parent="83" name="id">
+    <column id="115" parent="83" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="115" parent="83" name="nama">
+    <column id="116" parent="83" name="nama">
       <Position>2</Position>
       <DataType>varchar(191)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="116" parent="83" name="kontak">
+    <column id="117" parent="83" name="kontak">
       <Position>3</Position>
       <DataType>bigint(13)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="117" parent="83" name="email">
+    <column id="118" parent="83" name="email">
       <Position>4</Position>
       <DataType>varchar(254)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="118" parent="83" name="password">
+    <column id="119" parent="83" name="password">
       <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="119" parent="83" name="jenis_kelamin">
+    <column id="120" parent="83" name="jenis_kelamin">
       <Position>6</Position>
       <DataType>enum(&apos;L&apos;, &apos;P&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="120" parent="83" name="foto">
+    <column id="121" parent="83" name="foto">
       <Position>7</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="121" parent="83" name="PRIMARY">
+    <key id="122" parent="83" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="122" parent="84" name="id">
+    <column id="123" parent="84" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="123" parent="84" name="nama">
+    <column id="124" parent="84" name="nama">
       <Position>2</Position>
       <DataType>varchar(150)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="124" parent="84" name="kontak">
+    <column id="125" parent="84" name="kontak">
       <Position>3</Position>
       <DataType>bigint(13)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="125" parent="84" name="email">
+    <column id="126" parent="84" name="email">
       <Position>4</Position>
       <DataType>varchar(254)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="126" parent="84" name="password">
+    <column id="127" parent="84" name="password">
       <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="127" parent="84" name="jenis_kelamin">
+    <column id="128" parent="84" name="jenis_kelamin">
       <Position>6</Position>
       <DataType>enum(&apos;L&apos;, &apos;P&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="128" parent="84" name="foto">
+    <column id="129" parent="84" name="foto">
       <Position>7</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="129" parent="84" name="PRIMARY">
+    <key id="130" parent="84" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

@@ -246,6 +246,69 @@ class authbookModel
         return true;
     }
 
+    function getAllLapangan(){
+
+        $get = $this->connect->prepare('SELECT id, nama, jenis, lokasi, deskripsi, harga, kategori, foto FROM tbl_lapangan WHERE id_pemilik = ?');
+        $get->bind_param('i', $_SESSION['id']);
+        $get->execute();
+        $get->store_result();
+
+        if($get->num_rows == 0){
+            $_SESSION['message'] = "Pemilik belum memiliki lapangan";
+            return false;
+        }
+
+        $get->bind_result($id, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
+
+        $lapangan = array();
+        while($row = $get->fetch()){
+            array_push($lapangan, [
+                'id' => $id,
+                'nama' => $nama,
+                'jenis' => $jenis,
+                'lokasi' => $lokasi,
+                'deskripsi' => $deskripsi,
+                'harga' => $kategori,
+                'foto' => $foto
+            ]);
+        }
+        return $lapangan;
+    }
+
+    function tambahLapangan($params, $files){
+        session_start();
+
+        $idPemilik  = mysqli_real_escape_string($this->connect, $_SESSION['id']);
+        $nama       = mysqli_real_escape_string($this->connect, $params['nama']);
+        $jenis      = mysqli_real_escape_string($this->connect, $params['jenis']);
+        $lokasi     = mysqli_real_escape_string($this->connect, $params['lokasi']);
+        $deskripsi  = mysqli_real_escape_string($this->connect, $params['deskripsi']);
+        $harga      = mysqli_real_escape_string($this->connect, $params['harga']);
+        $kategori   = mysqli_real_escape_string($this->connect, $params['kategori']);
+
+        $namaFoto   = $this->generateRandomString() . '.' . pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
+        $tmpFoto    = $files['foto']['tmp_name'];
+        $pathDir    = 'Assets/img/';
+
+        $upload = move_uploaded_file($tmpFoto, $pathDir . $namaFoto);
+
+        if (!$upload) {
+            echo '<script>alert("file upload gagal");</script>';
+        }
+
+        $tLapangan = $this->connect->prepare('INSERT INTO tbl_lapangan(id_pemilik, nama, jenis, lokasi, deskripsi, harga, kategori, foto) VALUES(?,?,?,?,?,?,?,?)');
+        $tLapangan->bind_param('issssiss', $idPemilik, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $namaFoto);
+        $tLapangan->execute();
+        $tLapangan->store_result();
+
+        if($tLapangan->num_rows != 0){
+            $_SESSION['message'] = "gagal menambahkan lapangan";
+            return false;
+        }
+
+        return true;
+    }
+
     function delete($id)
     {
         $query = "DELETE FROM user_table WHERE id='" . $id . "'";

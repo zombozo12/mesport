@@ -14,7 +14,7 @@
                 <li><a href="pesananPemilik">Pesanan Masuk</a></li>
                 <li><a href="historyPemilik">Histori Pesanan</a></li>
                 <li><a href="listPemilik">List Lapangan</a></li>
-                <li class="active"><a href="profilePemilik">Profile</a></li>
+                <li><a href="profilePemilik">Profile</a></li>
             </ul>
         </div>
     </div>
