@@ -64,6 +64,9 @@ switch ($segment) {
     case 'listLapangan':
         include_once "views/listLapangan.php";
         break;
+    case 'bookLapangan':
+        $auth->bookLapangan();
+        break;
 
     //LAPANGAN PEMILIK
     case 'listPemilik':
