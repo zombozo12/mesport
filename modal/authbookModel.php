@@ -307,6 +307,38 @@ class authbookModel
         return $lapangan;
     }
 
+    function getLapanganUser($id){
+        $idLapangan = mysqli_real_escape_string($this->connect, $id);
+
+        $get = $this->connect->prepare('SELECT id, id_pemilik, nama, jenis, lokasi, deskripsi, harga, kategori, foto FROM tbl_lapangan WHERE id = ?');
+        $get->bind_param('i', $idLapangan);
+        $get->execute();
+        $get->store_result();
+
+        if($get->num_rows == 0){
+            $_SESSION['message'] = "Pemilik belum memiliki lapangan";
+            return false;
+        }
+
+        $get->bind_result($id, $id_pemilik, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
+
+        $lapangan = array();
+        while($row = $get->fetch()){
+            array_push($lapangan, [
+                'id' => $id,
+                'id_pemilik' => $id_pemilik,
+                'nama' => $nama,
+                'jenis' => $jenis,
+                'lokasi' => $lokasi,
+                'deskripsi' => $deskripsi,
+                'harga' => $harga,
+                'kategori' => $kategori,
+                'foto' => $foto
+            ]);
+        }
+        return $lapangan;
+    }
+
     function cariLapangan($cari){
         session_start();
         unset($_SESSION['lapangan']);
@@ -338,6 +370,40 @@ class authbookModel
             ]);
         }
         return $_SESSION['lapangan'];
+    }
+
+    function bookLapangan($params){
+        session_start();
+        $idLapangan = mysqli_real_escape_string($this->connect, $params['idLapangan']);
+        $start      = mysqli_real_escape_string($this->connect, $params['start']);
+        $end        = mysqli_real_escape_string($this->connect, $params['end']);
+        $idUser     = mysqli_real_escape_string($this->connect, $_SESSION['id']);
+
+        $bLap = $this->connect->prepare('INSERT INTO tbl_booking(id_pengguna, id_lapangan, start, end) VALUES(?,?,?,?)');
+        $bLap->bind_param('iiss', $idUser, $idLapangan, $start, $end);
+        $bLap->execute();
+        $bLap->store_result();
+
+        if($bLap->affected_rows == 0){
+            $_SESSION['message'] = "gagal booking lapangan";
+            return false;
+        }
+
+        $idBooking = $bLap->insert_id;
+        $idPemilik  = mysqli_real_escape_string($this->connect, $params['idPemilik']);
+        $status = 'Pending';
+
+        $aLap = $this->connect->prepare('INSERT INTO tbl_acc(id_pemilik, id_booking, status) VALUES(?,?,?)');
+        $aLap->bind_param('iis', $idPemilik, $idBooking, $status);
+        $aLap->execute();
+        $aLap->store_result();
+
+        if($aLap->affected_rows == 0){
+            $_SESSION['message'] = "gagal memasukan konfirmasi";
+            return false;
+        }
+
+        return true;
     }
 
     function tambahLapangan($params, $files){

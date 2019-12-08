@@ -5,12 +5,13 @@ include '../conn/database.php';
 include "../modal/authbookModel.php";
 $model = new authbookModel();
 
-foreach ($model->getLapangan($_GET['id']) as $data) {
+$idPemilik = '';
+foreach ($model->getLapanganUser($_GET['id']) as $data) {
+    $idPemilik = $data['id_pemilik'];
     ?>
-
     <div class="card" style="width: 50%; margin:auto; margin-top: 5%; margin-bottom: 5%; border-color: #F4BA10;">
         <img src="../Assets/img/<?= $data['foto'] ?>"
-        height="300" class="card-img-top" alt="">
+             height="300" class="card-img-top" alt="">
         <div class="card-body">
             <h5 class="card-title"><?= $data['nama'] ?></h5>
             <hr>
@@ -42,26 +43,29 @@ foreach ($model->getLapangan($_GET['id']) as $data) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="background-color: #F4BA10;">
-                    <form action="">
+                <form action="../bookLapangan" method="post">
+                    <div class="modal-body" style="background-color: #F4BA10;">
+                        <input type="hidden" name="idLapangan" value="<?= $_GET['id'] ?>">
+                        <input type="hidden" name="idPemilik" value="<?= $idPemilik ?>">
                         <div class="form-group">
                             <label for="formGroupExampleInput" style="color: white; font: bold;">Start Booking</label>
-                            <input type="date" class="form-control" id="formGroupExampleInput" placeholder="">
+                            <input type="date" class="form-control" id="formGroupExampleInput" placeholder=""
+                                   name="start">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2" style="color: white; font: bold;">End Booking</label>
                             <input type="date" class="form-control" id="formGroupExampleInput2"
-                                   placeholder="">
+                                   placeholder="" name="end">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary"
-                            style="background-color: #F4BA10; border-color: #F4BA10;">
-                        Book
-                    </button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary"
+                                style="background-color: #F4BA10; border-color: #F4BA10;">
+                            Book
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

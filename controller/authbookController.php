@@ -134,6 +134,18 @@ class authbookController
         }
     }
 
+    public function bookLapangan(){
+        $param = $_POST;
+
+        $result = $this->model->bookLapangan($param);
+
+        if ($result) {
+            header('Location: historyUser');
+        } else {
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="home"; </script>';
+        }
+    }
+
     public function tambahLapangan(){
         $param = $_POST;
         $file  = $_FILES;
