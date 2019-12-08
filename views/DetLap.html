@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script> 
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            
+            
+        <title>MeSport</title>
+       <style>
+       hr {
+           border-color : #F4BA10;
+       }
+       </style>
+</head>
+
+<body>
+<!-- tambahin navbar -->
+
+<div class="card" style="width: 50%; margin:auto; margin-top: 5%; margin-bottom: 5%; border-color: #F4BA10;">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png" height="300" class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title">Nama Lapangan</h5>
+      <hr>
+      <p class="font-weight-light">Deskripsi.</p>
+      <p class="font-weight-light">Jenis Lapangan</p>
+      <p class="font-weight-light">Kategori</p>
+      <hr>
+      <p class="card-text">Lokasi</p>
+      <hr>
+      <p class="card-text">Harga</p>
+      <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="background-color: #F4BA10; border-color: #F4BA10;">- B O O K I N G -</button></center>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Booking Lapangan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="background-color: #F4BA10;">
+          <form>
+            <div class="form-group">
+              <label for="formGroupExampleInput" style="color: white; font: bold;">Start Booking</label>
+              <input type="datetime-local" class="form-control" id="formGroupExampleInput" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2" style="color: white; font: bold;">End Booking</label>
+              <input type="datetime-local" class="form-control" id="formGroupExampleInput2" placeholder="">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" style="background-color: #F4BA10; border-color: #F4BA10;">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- tambahin footer -->
+</body>
+</html>
