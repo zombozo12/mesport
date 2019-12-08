@@ -268,7 +268,39 @@ class authbookModel
                 'jenis' => $jenis,
                 'lokasi' => $lokasi,
                 'deskripsi' => $deskripsi,
-                'harga' => $kategori,
+                'harga' => $harga,
+                'kategori' => $kategori,
+                'foto' => $foto
+            ]);
+        }
+        return $lapangan;
+    }
+
+    function getLapangan($id){
+        $idLapangan = mysqli_real_escape_string($this->connect, $id);
+
+        $get = $this->connect->prepare('SELECT id, nama, jenis, lokasi, deskripsi, harga, kategori, foto FROM tbl_lapangan WHERE id = ? AND id_pemilik = ?');
+        $get->bind_param('ii', $idLapangan, $_SESSION['id']);
+        $get->execute();
+        $get->store_result();
+
+        if($get->num_rows == 0){
+            $_SESSION['message'] = "Pemilik belum memiliki lapangan";
+            return false;
+        }
+
+        $get->bind_result($id, $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $foto);
+
+        $lapangan = array();
+        while($row = $get->fetch()){
+            array_push($lapangan, [
+                'id' => $id,
+                'nama' => $nama,
+                'jenis' => $jenis,
+                'lokasi' => $lokasi,
+                'deskripsi' => $deskripsi,
+                'harga' => $harga,
+                'kategori' => $kategori,
                 'foto' => $foto
             ]);
         }
@@ -301,8 +333,43 @@ class authbookModel
         $tLapangan->execute();
         $tLapangan->store_result();
 
-        if($tLapangan->num_rows != 0){
+        if($tLapangan->num_rows == 0){
             $_SESSION['message'] = "gagal menambahkan lapangan";
+            return false;
+        }
+
+        return true;
+    }
+
+    function updateLapangan($params, $files){
+        session_start();
+
+        $idLapangan = mysqli_real_escape_string($this->connect, $params['idLapangan']);
+        $idPemilik  = mysqli_real_escape_string($this->connect, $_SESSION['id']);
+        $nama       = mysqli_real_escape_string($this->connect, $params['nama']);
+        $jenis      = mysqli_real_escape_string($this->connect, $params['jenis']);
+        $lokasi     = mysqli_real_escape_string($this->connect, $params['lokasi']);
+        $deskripsi  = mysqli_real_escape_string($this->connect, $params['deskripsi']);
+        $harga      = mysqli_real_escape_string($this->connect, $params['harga']);
+        $kategori   = mysqli_real_escape_string($this->connect, $params['kategori']);
+
+        $namaFoto   = $this->generateRandomString() . '.' . pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
+        $tmpFoto    = $files['foto']['tmp_name'];
+        $pathDir    = 'Assets/img/';
+
+        $upload = move_uploaded_file($tmpFoto, $pathDir . $namaFoto);
+
+        if (!$upload) {
+            echo '<script>alert("file upload gagal");</script>';
+        }
+
+        $uLapangan = $this->connect->prepare('UPDATE tbl_lapangan SET nama = ?, jenis = ?, lokasi = ?, deskripsi = ?, harga = ?, kategori = ?, foto = ? WHERE id = ? AND id_pemilik = ?');
+        $uLapangan->bind_param('ssssisii', $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $namaFoto, $idLapangan, $idPemilik);
+        $uLapangan->execute();
+        $uLapangan->store_result();
+
+        if($uLapangan->affected_rows == 0){
+            $_SESSION['message'] = "gagal merubah lapangan";
             return false;
         }
 

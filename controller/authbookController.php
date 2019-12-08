@@ -135,6 +135,19 @@ class authbookController
         }
     }
 
+    public function updateLapangan(){
+        $param = $_POST;
+        $file  = $_FILES;
+
+        $result = $this->model->updateLapangan($param, $file);
+
+        if ($result) {
+            header('Location: listPemilik');
+        } else {
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="home"; </script>';
+        }
+    }
+
     public function logout()
     {
         session_start();
