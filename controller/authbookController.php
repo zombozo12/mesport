@@ -23,7 +23,7 @@ class authbookController
         if ($result) {
             header('Location: home');
         } else {
-            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="login"; </script>';
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="home"; </script>';
         }
     }
 
@@ -36,7 +36,7 @@ class authbookController
         if ($result) {
             header('Location: home');
         } else {
-            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="login"; </script>';
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="home"; </script>';
         }
     }
 
@@ -53,11 +53,10 @@ class authbookController
             if ($result) {
                 header('Location: home');
             } else {
-                echo '<script>alert("' . $_SESSION['message'] . '")</script>';
-
+                echo '<script>alert("' . $_SESSION['message'] . '"); window.location="registbook";</script>';
             }
         } else {
-            echo '<script>alert("Password not match!"); window.location="register"</script>';
+            echo '<script>alert("Password not match!"); window.location="home";</script>';
         }
     }
 
@@ -69,12 +68,59 @@ class authbookController
             if ($result) {
                 header('Location: home');
             } else {
-                echo '<script>alert("' . $_SESSION['message'] . '")</script>';
+                echo '<script>alert("' . $_SESSION['message'] . '"); window.location="regispemilik"</script>';
 
             }
         } else {
-            echo '<script>alert("Password not match!"); window.location="register"</script>';
+            echo '<script>alert("Password not match!"); window.location="home"</script>';
         }
+    }
+
+    public function updateProfileUser(){
+        $param = $_POST;
+        $file  = $_FILES;
+
+        if(empty($param['password'])){
+            echo '<script>alert("Password harus diisi!"); window.location="profileUser"</script>';
+            return;
+        }
+
+        if($param['password'] !== $param['password2']){
+            echo '<script>alert("Password not match!"); window.location="profileUser"</script>';
+            return;
+        }
+
+        $result = $this->model->updateProfileUser($param, $file);
+
+        if ($result) {
+            header('Location: home');
+        } else {
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="profileUser"; </script>';
+        }
+    }
+
+    public function updateProfilePemilik(){
+        $param = $_POST;
+        $file  = $_FILES;
+
+        if(empty($param['password'])){
+            echo '<script>alert("Password harus diisi!"); window.location="profilePemilik"</script>';
+            return;
+        }
+
+        if($param['password'] !== $param['password2']){
+            echo '<script>alert("Password not match!"); window.location="profilePemilik"</script>';
+            return;
+        }
+
+        $result = $this->model->updateProfilePemilik($param, $file);
+
+        if ($result) {
+            header('Location: profilePemilik');
+        } else {
+            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="profilePemilik"; </script>';
+        }
+
     }
 
     public function logout()
