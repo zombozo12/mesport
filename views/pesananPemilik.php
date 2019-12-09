@@ -53,8 +53,8 @@ $model = new authbookModel();
                             <th scope="row"><?= $no++; ?></th>
                             <td><?= $data['nama_pengguna'] ?></td>
                             <td><?= $data['nama_lapangan'] ?></td>
-                            <td><?= $data['book_start'] . ' - ' . $data['book_end']?></td>
-                            <td><?= $data['acc_status'] ?></td>
+                            <td><?= $data['book_start']?></td>
+                            <td><?= $data['book_end'] ?></td>
                             <td>
                                 <a href="/views/konfirmPesanan.php?id=<?= $data['id_acc']; ?>" class="btn btn-warning">Konfirm</a>
                                 <a href="/views/tolakPesanan.php?id=<?= $data['id_acc']; ?>" class="btn btn-danger">Tolak</a>

@@ -594,15 +594,28 @@ class authbookModel
         return true;
     }
 
-    function delete($id)
-    {
-        $query = "DELETE FROM user_table WHERE id='" . $id . "'";
+    // function delete($id)
+    // {
+    //     $query = "DELETE FROM tbl_lapangan WHERE id='" . $id . "'";
+    //     $ret = mysqli_query($this->connect, $query);
+
+    //     if ($ret > 0) {
+    //         return true;
+    //     } else {
+    //         $_SESSION['message'] = 'Gagal delete lapangan';
+    //         return false;
+    //     }
+    // }
+
+    function deleteLapangan($id){
+        $query = "DELETE FROM tbl_lapangan WHERE id='" . $id . "'";
+
         $ret = mysqli_query($this->connect, $query);
 
         if ($ret > 0) {
             return true;
         } else {
-            $_SESSION['message'] = 'Gagal delete akun';
+            $_SESSION['message'] = 'Gagal delete lapangan';
             return false;
         }
     }

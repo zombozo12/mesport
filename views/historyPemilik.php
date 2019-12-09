@@ -37,7 +37,7 @@ $model = new authbookModel();
                     <tr style="background-color: #F4BA10; color: white; font: bold;">
                         <th>#</th>
                         <th>Nama Lapangan</th>
-                        <th>Tanggal</th>
+                        <th>Waktu</th>
                         <th>Status</th>
                     </tr>
                     </thead>

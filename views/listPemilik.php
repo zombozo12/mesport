@@ -51,7 +51,7 @@ $model = new authbookModel();
                             <a href="views/editLapangan.php?id=<?= $data['id']; ?>">
                                 <button class="btn btn-warning">Edit</button>
                             </a>
-                            <a href="views/deleteLapangan.php?id=<?= $data['id']; ?>">
+                            <a href="deleteLapangan?id=<?= $data['id']; ?>">
                                 <button class="btn btn-danger">Delete</button>
                             </a>
                         </div>

@@ -210,20 +210,21 @@ class authbookController
         }
     }
 
-    public function destroy()
-    {
-        if (!isset($_SESSION)) session_start();
-        $id = $_SESSION['id'];
-        $result = $this->model->delete($id);
+    public function deleteLapangan(){
+        session_start();
+        $param = $_GET;
+        $id = $param ['id'];
+
+        $result = $this->model->deleteLapangan($id);
 
         if ($result) {
-            echo '<script>alert("Berhasil delete akun"); window.location="home";</script>';
-            session_start();
-            session_destroy();
+            echo '<script>alert("Berhasil Delete lapangan"); window.location="listPemilik";</script>';
         } else {
-            echo '<script>alert("' . $_SESSION['message'] . '"); window.location="home";</script>';
+            echo '<script>alert("' . $_SESSION['message'] . '");  window.location="listPemilik";</script>';
         }
     }
+
+    
 }
 
 ?>

@@ -179,7 +179,7 @@ if (!isset($_SESSION)) session_start();
     <nav class=" navbar navbar-expand-md navbar-light bg-white fixed-nav-bar ">
         <div class="container-fluid">
             <a class="navbar-brand" href="home">
-                <img src="Assets/logo MeSport!.png" alt="Logo" style="width: 100px;">
+                <img src="../Assets/logo MeSport!.png" alt="Logo" style="width: 100px;">
             </a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">

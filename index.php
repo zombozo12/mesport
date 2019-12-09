@@ -12,23 +12,23 @@ $auth = new authbookController();
 
 switch ($segment) {
 
-    case '' :
+    case '':
         include_once('views/home.php');
-    break;
+        break;
 
-    case 'home' :
+    case 'home':
         include_once('views/home.php');
-    break;
+        break;
 
-    //PROFILE
+        //PROFILE
     case 'profileUser':
         session_start();
-        if(!isset($_SESSION['role'])){
+        if (!isset($_SESSION['role'])) {
             header('Location: home');
             return;
         }
 
-        if($_SESSION['role'] != 'user'){
+        if ($_SESSION['role'] != 'user') {
             header('Location: home');
             return;
         }
@@ -41,12 +41,12 @@ switch ($segment) {
 
     case 'profilePemilik':
         session_start();
-        if(!isset($_SESSION['role'])){
+        if (!isset($_SESSION['role'])) {
             header('Location: home');
             return;
         }
 
-        if($_SESSION['role'] != 'pemilik'){
+        if ($_SESSION['role'] != 'pemilik') {
             header('Location: home');
             return;
         }
@@ -56,7 +56,7 @@ switch ($segment) {
     case 'uProfilePemilik':
         $auth->updateProfilePemilik();
         break;
-    //END PROFILE
+        //END PROFILE
 
     case 'cariLapangan':
         $auth->cariLapangan();
@@ -79,7 +79,7 @@ switch ($segment) {
         include_once 'views/pesananPemilik.php';
         break;
 
-    //LAPANGAN PEMILIK
+        //LAPANGAN PEMILIK
     case 'listPemilik':
         include_once "views/listPemilik.php";
         break;
@@ -93,36 +93,38 @@ switch ($segment) {
         $auth->updateLapangan();
         break;
 
-    //REGISTRATION
-    case 'registbook' :
+        //REGISTRATION
+    case 'registbook':
         include_once('views/registerbook.php');
         break;
-    case 'registpemilik' :
+    case 'registpemilik':
         include_once('views/registerpemilik.php');
         break;
-    case 'registerUser' :
+    case 'registerUser':
         $auth->registerUser();
         break;
     case 'registerPemilik':
         $auth->registerPemilik();
-         break;
-    //END REGISTRATION
+        break;
+        //END REGISTRATION
 
-    //LOGIN
+        //LOGIN
     case 'loginUser':
         $auth->loginUser();
         break;
     case 'loginPemilik':
         $auth->loginPemilik();
         break;
-    //END LOGIN
+        //END LOGIN
 
-    //LOGOUT
+        //LOGOUT
     case 'logout':
         $auth->logout();
         break;
-    default :
+    case 'deleteLapangan':
+        $auth->deleteLapangan();
+        break;
+    default:
         echo '404 Not Found';
         break;
 }
-?>
