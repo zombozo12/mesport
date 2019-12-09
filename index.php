@@ -78,6 +78,7 @@ switch ($segment) {
     case 'pesananPemilik':
         include_once 'views/pesananPemilik.php';
         break;
+
     //LAPANGAN PEMILIK
     case 'listPemilik':
         include_once "views/listPemilik.php";
@@ -90,11 +91,6 @@ switch ($segment) {
         break;
     case 'uLapangan':
         $auth->updateLapangan();
-        break;
-
-
-    //PESANAN MASUK
-    case 'pesananPemilik':
         break;
 
     //REGISTRATION
