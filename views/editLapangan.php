@@ -93,7 +93,7 @@ $model = new authbookModel();
 
                             <div class="form-group" style="margin-top: 8px;">
                                 <input type="submit" class="btn btn-warning" value="Simpan">
-                                <a href="listPemilik" class="btn btn-secondary">Kembali</a>
+                                <a href="/listPemilik" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>

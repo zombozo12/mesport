@@ -19,6 +19,7 @@
 <!-- Side Navbar -->
 
 <?php
+error_reporting(0);
 include('views/pemilik/sidebar.php');
 $model = new authbookModel();
 ?>
