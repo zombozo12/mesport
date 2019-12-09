@@ -44,7 +44,7 @@ $model = new authbookModel();
                         <h4>Edit Lapangan</h4>
                     </div>
                     <div class="card-body">
-                        <form action="../uLapangan" method="post">
+                        <form action="../uLapangan" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="idLapangan" value="<?= $data['id'] ?>">
                             <div class="form-group">
                                 <label>Nama</label>
@@ -53,7 +53,7 @@ $model = new authbookModel();
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Jenis Lapangan</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
+                                <select class="form-control" id="exampleFormControlSelect1" name="jenis">
                                     <option value="1">Lapangan Futsal</option>
                                     <option value="2">Lapangan Basket</option>
                                     <option value="3">Lapangan Tenis</option>
@@ -62,12 +62,12 @@ $model = new authbookModel();
 
                             <div class="form-group">
                                 <label>Lokasi</label>
-                                <input type="text" value="<?= $data['lokasi'] ?>" class="form-control">
+                                <input type="text" value="<?= $data['lokasi'] ?>" class="form-control" name="lokasi">
                             </div>
                             <div class="form-group">
                                 <label>Deskripsi</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                          rows="3"><?= $data['deskripsi'] ?></textarea>
+                                          rows="3" name="deskripsi"><?= $data['deskripsi'] ?></textarea>
                             </div>
                             <label class="sr-only" for="inlineFormInputGroupUsername2">Harga Lapangan</label>
                             <div class="input-group mb-2 mr-sm-2">
@@ -76,18 +76,18 @@ $model = new authbookModel();
                                 </div>
                                 <input type="number" class="form-control" id="inlineFormInputGroupUsername2"
                                        value="<?= $data['harga'] ?>"
-                                       placeholder="ex : 50000">
+                                       placeholder="ex : 50000" name="harga">
                             </div>
                             <div class="form-group">
                                 <label for="ControlSelect1">Kategori Lapangan</label>
-                                <select class="form-control" id="ControlSelect1">
+                                <select class="form-control" id="ControlSelect1" name="kategori">
                                     <option value="1">Indoor</option>
                                     <option value="2">Outdoor</option>
                                 </select>
                             </div>
                             <label for="ControlSelect1">Pilih Gambar</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
+                                <input type="file" class="custom-file-input" id="customFile" name="foto">
                                 <label class="custom-file-label" for="customFile">Pilih Gambar</label>
                             </div>
 

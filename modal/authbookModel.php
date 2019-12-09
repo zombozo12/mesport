@@ -442,7 +442,7 @@ class authbookModel
         $tLapangan->execute();
         $tLapangan->store_result();
 
-        if ($tLapangan->num_rows == 0) {
+        if ($tLapangan->affected_rows == 0) {
             $_SESSION['message'] = "gagal menambahkan lapangan";
             return false;
         }
@@ -474,7 +474,7 @@ class authbookModel
         }
 
         $uLapangan = $this->connect->prepare('UPDATE tbl_lapangan SET nama = ?, jenis = ?, lokasi = ?, deskripsi = ?, harga = ?, kategori = ?, foto = ? WHERE id = ? AND id_pemilik = ?');
-        $uLapangan->bind_param('ssssisii', $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $namaFoto, $idLapangan, $idPemilik);
+        $uLapangan->bind_param('ssssissii', $nama, $jenis, $lokasi, $deskripsi, $harga, $kategori, $namaFoto, $idLapangan, $idPemilik);
         $uLapangan->execute();
         $uLapangan->store_result();
 
