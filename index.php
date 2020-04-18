@@ -19,7 +19,15 @@ switch ($segment) {
     case 'home':
         include_once('views/home.php');
         break;
-
+    case 'isiSaldo':
+        include_once "views/isiSaldo.php";
+        break;
+    case 'pembayaran':
+        include_once "views/pembayaran.php";
+        break;
+    case 'finishingPembayaran':
+        include_once "views/finishingPembayaran.php";
+        break;
         //PROFILE
     case 'profileUser':
         session_start();

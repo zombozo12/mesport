@@ -172,6 +172,16 @@ class authbookController
         }
     }
 
+    public function isiSaldo($saldo){
+        $result = $this->model->isiSaldo($saldo);
+        if($result){
+            return true;
+        }else {
+            echo '<script>alert("Something went wrong"); window.location="home"; </script>';
+            return false;
+        }
+    }
+
     public function logout()
     {
         session_start();

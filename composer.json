@@ -1,0 +1,6 @@
+{
+  "require": {
+    "veritrans/veritrans-php": "dev-master",
+    "guzzlehttp/guzzle": "^6.5"
+  }
+}

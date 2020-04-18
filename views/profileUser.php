@@ -27,7 +27,7 @@
 <body>
 
 <!-- tambahin navbar -->
-
+<?php include "navbar.php"; ?>
 <!--Profil User-->
 <div class="container">
     <div class="card" style="width: 70%;margin:auto; margin-top: 5%; margin-bottom: 5%;">
@@ -86,5 +86,6 @@
 </div>
 
 <!-- tambahin footer -->
+<?php include "footer.php"; ?>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 include_once('navbar.php');
-error_reporting(1);
+error_reporting(0);
 include '../conn/database.php';
 include "../modal/authbookModel.php";
 $model = new authbookModel();

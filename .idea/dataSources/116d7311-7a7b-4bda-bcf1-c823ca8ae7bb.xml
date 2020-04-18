@@ -83,38 +83,50 @@
     <schema id="77" parent="1" name="phpmyadmin"/>
     <schema id="78" parent="1" name="test"/>
     <schema id="79" parent="1" name="dcmm"/>
-    <table id="80" parent="2" name="tbl_acc"/>
-    <table id="81" parent="2" name="tbl_booking"/>
-    <table id="82" parent="2" name="tbl_lapangan"/>
-    <table id="83" parent="2" name="tbl_pemilik"/>
-    <table id="84" parent="2" name="tbl_user"/>
-    <column id="85" parent="80" name="id">
+    <schema id="80" parent="1" name="db_absensi"/>
+    <schema id="81" parent="1" name="db_diklinik"/>
+    <schema id="82" parent="1" name="db_iot"/>
+    <schema id="83" parent="1" name="db_majubersama"/>
+    <table id="84" parent="2" name="tbl_acc"/>
+    <table id="85" parent="2" name="tbl_booking"/>
+    <table id="86" parent="2" name="tbl_lapangan"/>
+    <table id="87" parent="2" name="tbl_pembayaran"/>
+    <table id="88" parent="2" name="tbl_pemilik"/>
+    <table id="89" parent="2" name="tbl_saldo"/>
+    <table id="90" parent="2" name="tbl_user"/>
+    <column id="91" parent="84" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="86" parent="80" name="id_pemilik">
+    <column id="92" parent="84" name="id_pemilik">
       <Position>2</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="87" parent="80" name="id_booking">
+    <column id="93" parent="84" name="id_booking">
       <Position>3</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="88" parent="80" name="status">
+    <column id="94" parent="84" name="status">
       <Position>4</Position>
-      <DataType>enum(&apos;Pending&apos;, &apos;Confimed&apos;, &apos;Finished&apos;, &apos;Canceled&apos;)|0</DataType>
+      <DataType>enum(&apos;Pending&apos;, &apos;Confirmed&apos;, &apos;Finished&apos;, &apos;Declined&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="89" parent="80" name="id_booking">
+    <index id="95" parent="84" name="id_booking">
       <ColNames>id_booking</ColNames>
     </index>
-    <index id="90" parent="80" name="id_pemilik">
+    <index id="96" parent="84" name="id_pemilik">
       <ColNames>id_pemilik</ColNames>
     </index>
-    <foreign-key id="91" parent="80" name="tbl_acc_ibfk_2">
+    <key id="97" parent="84" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="98" parent="84" name="tbl_acc_ibfk_2">
       <ColNames>id_pemilik</ColNames>
       <RefSchemaName>db_mesport</RefSchemaName>
       <RefTableName>tbl_pemilik</RefTableName>
@@ -122,7 +134,7 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="92" parent="80" name="tbl_acc_ibfk_1">
+    <foreign-key id="99" parent="84" name="tbl_acc_ibfk_1">
       <ColNames>id_booking</ColNames>
       <RefSchemaName>db_mesport</RefSchemaName>
       <RefTableName>tbl_booking</RefTableName>
@@ -130,44 +142,44 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="93" parent="81" name="id">
+    <column id="100" parent="85" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="94" parent="81" name="id_pengguna">
+    <column id="101" parent="85" name="id_pengguna">
       <Position>2</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="95" parent="81" name="id_lapangan">
+    <column id="102" parent="85" name="id_lapangan">
       <Position>3</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="96" parent="81" name="start">
+    <column id="103" parent="85" name="start">
       <Position>4</Position>
-      <DataType>date|0</DataType>
+      <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="97" parent="81" name="end">
+    <column id="104" parent="85" name="end">
       <Position>5</Position>
-      <DataType>date|0</DataType>
+      <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="98" parent="81" name="id_lapangan">
+    <index id="105" parent="85" name="id_lapangan">
       <ColNames>id_lapangan</ColNames>
     </index>
-    <index id="99" parent="81" name="id_pengguna">
+    <index id="106" parent="85" name="id_pengguna">
       <ColNames>id_pengguna</ColNames>
     </index>
-    <key id="100" parent="81" name="PRIMARY">
+    <key id="107" parent="85" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="101" parent="81" name="tbl_booking_ibfk_2">
+    <foreign-key id="108" parent="85" name="tbl_booking_ibfk_2">
       <ColNames>id_pengguna</ColNames>
       <RefSchemaName>db_mesport</RefSchemaName>
       <RefTableName>tbl_user</RefTableName>
@@ -175,7 +187,7 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="102" parent="81" name="tbl_booking_ibfk_1">
+    <foreign-key id="109" parent="85" name="tbl_booking_ibfk_1">
       <ColNames>id_lapangan</ColNames>
       <RefSchemaName>db_mesport</RefSchemaName>
       <RefTableName>tbl_lapangan</RefTableName>
@@ -183,61 +195,61 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="103" parent="82" name="id">
+    <column id="110" parent="86" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="104" parent="82" name="id_pemilik">
+    <column id="111" parent="86" name="id_pemilik">
       <Position>2</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="105" parent="82" name="nama">
+    <column id="112" parent="86" name="nama">
       <Position>3</Position>
       <DataType>varchar(150)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="106" parent="82" name="jenis">
+    <column id="113" parent="86" name="jenis">
       <Position>4</Position>
-      <DataType>enum(&apos;Lapangan Bola&apos;, &apos;Lapangan Badminton&apos;, &apos;Lapangan Futsal&apos;, &apos;Lapangan Tenis&apos;, &apos;Lapangan Basket&apos;)|0</DataType>
+      <DataType>enum(&apos;Lapangan Futsal&apos;, &apos;Lapangan Basket&apos;, &apos;Lapangan Tenis&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="107" parent="82" name="lokasi">
+    <column id="114" parent="86" name="lokasi">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="108" parent="82" name="deskripsi">
+    <column id="115" parent="86" name="deskripsi">
       <Position>6</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="109" parent="82" name="harga">
+    <column id="116" parent="86" name="harga">
       <Position>7</Position>
       <DataType>bigint(16)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="110" parent="82" name="kategori">
+    <column id="117" parent="86" name="kategori">
       <Position>8</Position>
       <DataType>enum(&apos;Indoor&apos;, &apos;Outdoor&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="111" parent="82" name="foto">
+    <column id="118" parent="86" name="foto">
       <Position>9</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="112" parent="82" name="id_pemilik">
+    <index id="119" parent="86" name="id_pemilik">
       <ColNames>id_pemilik</ColNames>
     </index>
-    <key id="113" parent="82" name="PRIMARY">
+    <key id="120" parent="86" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="114" parent="82" name="tbl_lapangan_ibfk_1">
+    <foreign-key id="121" parent="86" name="tbl_lapangan_ibfk_1">
       <ColNames>id_pemilik</ColNames>
       <RefSchemaName>db_mesport</RefSchemaName>
       <RefTableName>tbl_pemilik</RefTableName>
@@ -245,84 +257,158 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="115" parent="83" name="id">
+    <column id="122" parent="87" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="116" parent="83" name="nama">
+    <column id="123" parent="87" name="id_pengguna">
       <Position>2</Position>
-      <DataType>varchar(191)|0</DataType>
+      <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="117" parent="83" name="kontak">
+    <column id="124" parent="87" name="id_booking">
       <Position>3</Position>
-      <DataType>bigint(13)|0</DataType>
+      <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="118" parent="83" name="email">
+    <column id="125" parent="87" name="metode">
       <Position>4</Position>
-      <DataType>varchar(254)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="119" parent="83" name="password">
-      <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="120" parent="83" name="jenis_kelamin">
-      <Position>6</Position>
-      <DataType>enum(&apos;L&apos;, &apos;P&apos;)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="121" parent="83" name="foto">
-      <Position>7</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="122" parent="83" name="PRIMARY">
+    <key id="126" parent="87" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="123" parent="84" name="id">
+    <column id="127" parent="88" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="124" parent="84" name="nama">
+    <column id="128" parent="88" name="nama">
       <Position>2</Position>
-      <DataType>varchar(150)|0</DataType>
+      <DataType>varchar(191)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="125" parent="84" name="kontak">
+    <column id="129" parent="88" name="kontak">
       <Position>3</Position>
       <DataType>bigint(13)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="126" parent="84" name="email">
+    <column id="130" parent="88" name="email">
       <Position>4</Position>
       <DataType>varchar(254)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="127" parent="84" name="password">
+    <column id="131" parent="88" name="password">
       <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="128" parent="84" name="jenis_kelamin">
+    <column id="132" parent="88" name="jenis_kelamin">
       <Position>6</Position>
       <DataType>enum(&apos;L&apos;, &apos;P&apos;)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="129" parent="84" name="foto">
+    <column id="133" parent="88" name="foto">
       <Position>7</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="130" parent="84" name="PRIMARY">
+    <key id="134" parent="88" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="135" parent="89" name="id">
+      <Position>1</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="136" parent="89" name="id_pengguna">
+      <Position>2</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="137" parent="89" name="id_pemilik">
+      <Position>3</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="138" parent="89" name="jumlah">
+      <Position>4</Position>
+      <DataType>bigint(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="139" parent="89" name="id_pemilik">
+      <ColNames>id_pemilik</ColNames>
+    </index>
+    <index id="140" parent="89" name="id_pengguna">
+      <ColNames>id_pengguna</ColNames>
+    </index>
+    <key id="141" parent="89" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="142" parent="89" name="tbl_saldo_ibfk_1">
+      <ColNames>id_pengguna</ColNames>
+      <RefSchemaName>db_mesport</RefSchemaName>
+      <RefTableName>tbl_user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="143" parent="89" name="tbl_saldo_ibfk_2">
+      <ColNames>id_pemilik</ColNames>
+      <RefSchemaName>db_mesport</RefSchemaName>
+      <RefTableName>tbl_pemilik</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="144" parent="90" name="id">
+      <Position>1</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="145" parent="90" name="nama">
+      <Position>2</Position>
+      <DataType>varchar(150)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="146" parent="90" name="kontak">
+      <Position>3</Position>
+      <DataType>bigint(13)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="147" parent="90" name="email">
+      <Position>4</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="148" parent="90" name="password">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="149" parent="90" name="jenis_kelamin">
+      <Position>6</Position>
+      <DataType>enum(&apos;L&apos;, &apos;P&apos;)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="150" parent="90" name="foto">
+      <Position>7</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="151" parent="90" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

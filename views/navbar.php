@@ -15,9 +15,9 @@ if (!isset($_SESSION)) session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="Assets/css/modal.css">
-    <link rel="stylesheet" type="text/css" href="Assets/css/app.css">
-    <script src="Assets/js/modal.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Assets/css/modal.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/app.css">
+    <script src="../Assets/js/modal.js"></script>
     <title>MeSport</title>
 </head>
 
@@ -27,8 +27,8 @@ if (!isset($_SESSION)) session_start();
 <?php if (!isset($_SESSION['id'])) { ?>
     <nav class=" navbar navbar-expand-md navbar-light bg-white fixed-nav-bar ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="home">
-                <img src="Assets/logo MeSport!.png" alt="Logo" style="width: 100px;">
+            <a class="navbar-brand" href="../home">
+                <img src="../Assets/logo MeSport!.png" alt="Logo" style="width: 100px;">
             </a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -53,11 +53,11 @@ if (!isset($_SESSION)) session_start();
                         </ul>
                         <!-- LOGIN USER -->
                         <div id="login">
-                            <form class="form" action="loginUser" method="post">
+                            <form class="form" action="../loginUser" method="post">
                                 <div class="row">
                                     <div class="col-sm">
                                         <center>
-                                            <img class="img-fluid" src="Assets/player.svg" alt=""
+                                            <img class="img-fluid" src="../Assets/player.svg" alt=""
                                                  style="width: 50%; transform: scaleX(-1);">
 
                                             <h3 style="margin-top: 8%;"> Cari dan booking lapangan sesuai dengan
@@ -83,7 +83,7 @@ if (!isset($_SESSION)) session_start();
 
 
                                         Belum Memiliki akun?
-                                        <a class="text-link" href="registbook">DAFTAR</a>
+                                        <a class="text-link" href="../registbook">DAFTAR</a>
                                         <p class="fieldset">
                                             <input class="full-width" type="submit"
                                                    value="Login Sebagai Pengguna Lapangan">
@@ -98,13 +98,14 @@ if (!isset($_SESSION)) session_start();
                 </div>
                 <!-- LOGIN LAPANGAN -->
                 <div id="signup">
-                    <form class="form" action="loginPemilik" method="post">
+                    <form class="form" action="../loginPemilik" method="post">
                         <div class="row">
                             <div class="col-sm">
                                 <center>
-                                    <img class="img-fluid" src="Assets/owner.svg" alt="" style="width: 70%;">
+                                    <img class="img-fluid" src="../Assets/owner.svg" alt="" style="width: 70%;">
 
-                                    <h3 style="margin-top: 8%;"> Bergabung bersama kami untuk memasarkan lapangan anda! </h3>
+                                    <h3 style="margin-top: 8%;"> Bergabung bersama kami untuk memasarkan lapangan
+                                        anda! </h3>
                                 </center>
 
                                 <!-- <a href="#0" class="close-form">Close</a> -->
@@ -126,7 +127,7 @@ if (!isset($_SESSION)) session_start();
                                 </p>
 
                                 Ingin gabung bersama kami?
-                                <a class="text-link" href="registpemilik">DAFTAR</a>
+                                <a class="text-link" href="../registpemilik">DAFTAR</a>
 
                                 <p class="fieldset">
                                     <input class="full-width" type="submit" value="Login Sebagai Pemilik Lapangan">
@@ -135,40 +136,9 @@ if (!isset($_SESSION)) session_start();
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
-        <!-- LOGIN LAPANGAN -->
-        <div id="signup">
-            <form class="form" action="ayeaye" method="post">
-                <div class="row">
-                    <div class="col-sm">
-                        <p class="fieldset">
-                            <label class="image-replace email" for="signin-email">E-mail</label>
-                            <input class="full-width has-padding has-border" id="signin-emaillap" type="email"
-                                   placeholder="E-mail">
-                            <span class="error-message">An account with this email address does not exist!</span>
-                        </p>
 
-                        <p class="fieldset">
-                            <label class="image-replace password" for="signin-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signin-passwordlap" type="password"
-                                   placeholder="Password">
-                            <a href="#0" class="hide-password">Show</a>
-                            <span class="error-message">Wrong password! Try again.</span>
-                        </p>
-
-                        Ingin gabung bersama kami?
-                        <a class="text-link" href="registpemilik">DAFTAR</a>
-
-                        <p class="fieldset">
-                            <input class="full-width" type="submit" value="Login Sebagai Pemilik Lapangan">
-                        </p>
-                    </div>
-                </div>
-            </form>
-            <!-- <a href="#0" class="cd-close-form">Close</a> -->
-        </div>
         <!-- End Modal Section -->
     </nav>
     <!-- belum login  end -->
@@ -190,21 +160,26 @@ if (!isset($_SESSION)) session_start();
 
                 <!-- Right Side Of Navbar -->
                 <div class="dropdown">
-                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
                         <?= $_SESSION['nama']; ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <?php
-                        if($_SESSION['role'] === 'user'){
+                        if ($_SESSION['role'] === 'user') {
                             ?>
                             <a class="dropdown-item" href="profileUser">Profile</a>
                             <a class="dropdown-item" href="historyUser">History</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIsiSaldo">Beli
+                                Saldo</a>
                             <a class="dropdown-item" href="logout">Logout</a>
                             <?php
-                        }else{
+                        } else {
                             ?>
                             <a class="dropdown-item" href="profilePemilik">Profile</a>
                             <a class="dropdown-item" href="historyPemilik">History</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIsiSaldo">Beli
+                                Saldo</a>
                             <a class="dropdown-item" href="logout">Logout</a>
                             <?php
                         }
@@ -215,7 +190,35 @@ if (!isset($_SESSION)) session_start();
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade" id="modalIsiSaldo" tabindex="-1" role="dialog" aria-labelledby="modalIsiSaldoTitle"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <form action="/isiSaldo" method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalIsiSaldoTitle">Beli Saldo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Jumlah Saldo:</label>
+                                <input type="number" class="form-control" id="recipient-name" name="jumlahSaldo">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="btnBeliSaldo" type="submit" class="btn btn-primary">Beli Saldo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </nav>
+
 <?php } ?>
 <!-- udah login end -->
 </body>

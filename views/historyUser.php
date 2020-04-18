@@ -18,6 +18,7 @@ $model = new authbookModel();
                 <th>Nama Lapangan</th>
                 <th>Tanggal</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody style="color: gray;">
@@ -28,8 +29,24 @@ $model = new authbookModel();
                 <tr>
                     <th scope="row"><?= $no++; ?></th>
                     <td><?= $data['nama_lapangan'] ?></td>
-                    <td><?= $data['book_start'] . ' - ' . $data['book_end']?></td>
+                    <td><?= $data['book_start'] . ' - ' . $data['book_end'] ?></td>
                     <td><?= $data['acc_status'] ?></td>
+
+                    <?php
+                    if ($data['acc_status'] === 'Pending') {
+                        ?>
+                        <td>
+                            <form action="../pembayaran" method="post">
+                                <input type="hidden" name="id" value="<?= $data['id_booking'];?>"/>
+                                <button type="submit" class="btn btn-primary"
+                                        style="background-color: #F4BA10; border-color: #F4BA10;">
+                                    Bayar
+                                </button>
+                            </form>
+                        </td>
+                        <?php
+                    }
+                    ?>
                 </tr>
                 <?php
             }

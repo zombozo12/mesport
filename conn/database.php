@@ -1,7 +1,6 @@
 <?php
 
-function connect()
-{
+function connect(){
     $connect = mysqli_connect("localhost", "root", '', "db_mesport");
     
 

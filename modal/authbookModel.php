@@ -380,8 +380,7 @@ class authbookModel
         return $_SESSION['lapangan'];
     }
 
-    function bookLapangan($params)
-    {
+    function bookLapangan($params){
         session_start();
         $idLapangan = mysqli_real_escape_string($this->connect, $params['idLapangan']);
         $start = mysqli_real_escape_string($this->connect, $params['start']);
@@ -490,7 +489,7 @@ class authbookModel
         $idUser = mysqli_real_escape_string($this->connect, $_SESSION['id']);
 
         $hUser = $this->connect->prepare(
-            'SELECT tbl_lapangan.nama, tbl_booking.start, tbl_booking.end, tbl_acc.status FROM tbl_booking
+            'SELECT tbl_booking.id, tbl_lapangan.nama, tbl_booking.start, tbl_booking.end, tbl_acc.status FROM tbl_booking
                 INNER JOIN tbl_lapangan ON tbl_lapangan.id = tbl_booking.id_lapangan
                 INNER JOIN tbl_acc ON tbl_acc.id_booking = tbl_booking.id
                 WHERE tbl_booking.id_pengguna = ?'
@@ -504,11 +503,12 @@ class authbookModel
             return false;
         }
 
-        $hUser->bind_result($nama_lapangan, $book_start, $book_end, $acc_status);
+        $hUser->bind_result($id_booking, $nama_lapangan, $book_start, $book_end, $acc_status);
 
         $histori = array();
         while ($hUser->fetch()) {
             array_push($histori, [
+                'id_booking' => $id_booking,
                 'nama_lapangan' => $nama_lapangan,
                 'book_start' => $book_start,
                 'book_end' => $book_end,
@@ -589,6 +589,62 @@ class authbookModel
 
         if($uStatus->affected_rows == 0){
             $_SESSION['message'] = "gagal merubah status";
+            return false;
+        }
+        return true;
+    }
+
+    function isiSaldo($saldo){
+        $role = $_SESSION['role'];
+        $id = $_SESSION['id'];
+
+
+        if($role == 'user') {
+            $get = $this->connect->prepare("SELECT jumlah FROM tbl_saldo WHERE id_pengguna = ?");
+        }else{
+            $get = $this->connect->prepare("SELECT jumlah FROM tbl_saldo WHERE id_pemilik = ?");
+        }
+
+        $get->bind_param("i", $id);
+        $get->execute();
+        $get->store_result();
+
+        if($get->num_rows != 0){
+            $get->bind_result($dbSaldo);
+            while($get->fetch()){
+                $saldo += $dbSaldo;
+            }
+
+
+            if($role == 'user'){
+                $edit = $this->connect->prepare("UPDATE tbl_saldo SET jumlah = ? WHERE id_pengguna = ?");
+            }else{
+                $edit = $this->connect->prepare("UPDATE tbl_saldo SET jumlah = ? WHERE id_pemilik = ?");
+            }
+
+            $edit->bind_param("ii", $saldo, $id);
+            $edit->execute();
+            $edit->store_result();
+            if($edit->affected_rows != 0){
+                return true;
+            }else{
+                $_SESSION['message'] = "Gagal Update Saldo";
+                return false;
+            }
+        }
+
+        if($role == 'user'){
+            $add = $this->connect->prepare("INSERT INTO tbl_saldo(id_pengguna, jumlah) VALUES (?,?)");
+        }else if($role == 'pemilik'){
+            $add = $this->connect->prepare("INSERT INTO tbl_saldo(id_pemilik, jumlah) VALUES (?,?)");
+        }
+
+        $add->bind_param("ii", $id, $saldo);
+        $add->execute();
+        $add->store_result();
+
+        if($add->affected_rows == 0){
+            $_SESSION['message'] = "Gagal mengisi saldo";
             return false;
         }
         return true;
